@@ -4,6 +4,8 @@ import os
 import sys
 
 
+# github test
+
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CourseRater.settings')
     try:
