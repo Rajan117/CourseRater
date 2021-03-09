@@ -6,8 +6,51 @@
                 Homepage
 {% endblock %}
 
+{% block style_block %}
+  body {
+    background-color: #ffd35b;
+  }
+
+  .container{
+    color: black;
+    margin: 0px auto;
+    height: 100%;
+    width: 100%;
+    position:relative;
+  }
+
+  .search{
+    text-align: center;
+    width: 900px;
+    height: 200px;
+    position: relative;
+    top: 300px;
+    right: 0px;
+    left: 0px;
+    margin: 0px auto;
+  }
+
+  input[type=text] {
+    font-size: 15px;
+    width: 75%;
+    padding: 15px 15px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    outline: none;
+  }
+
+{% endblock %}
+
 {% block body_block %}
-    <h1>
-    Welcome to Course Rater!
-    </h1>
+
+<div class = "container">
+  <div class = "search">
+    <h1> Find your university </h1>
+    <h3> Search your university to find course ratings and start rating courses. </h3>
+    <form>
+      <input type="text" id="lname" name="lname" placeholder="Search...">
+    </form>
+  </div>
+</div>
+
 {% endblock %}
