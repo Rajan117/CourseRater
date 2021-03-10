@@ -2,28 +2,86 @@
 {% load static %}
 
 <html>
-    <head>
-        <title>
-            Course Rater
-            {% block title_block %}
-                Base case
-            {% endblock %}
-        </title>
-    </head>
-    <body>
-        <div>
-        Course Rater 2021
-            {% block body_block %}
-                Base case
-            {% endblock %}
-        </div>
-    <hr />
-    <div>
-        <ul>
-            <li><a href="{% url 'CourseRate:about' %}">About</a></li>
-            <li><a href="{% url 'CourseRate:home' %}">Home</a></li>
-            <li><a href="{% url 'CourseRate:register' %}">Sign Up</a></li>
-        </ul>
+  <head>
+    <title>
+      Course Rater
+        {% block title_block %}
+          Base case
+        {% endblock %}
+    </title>
+
+    <style>
+
+      body {
+        margin:0;
+        font-family: Helvetica, sans-serif;
+      }
+
+      .main {
+        margin-top: 55px;
+        margin-bottom: 55px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      ul {
+        background-color: #ffd35b;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+        width: 100%;
+        position:fixed;
+      }
+
+      ul.top {
+        top: 0;
+      }
+
+      ul.bottom {
+        bottom: 0;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 12px 20px;
+        text-decoration: none;
+      }
+
+      li a:hover:not(.active) {
+        color: white;
+      }
+
+      {% block style_block %}
+        Base case
+      {% endblock %}
+
+    </style>
+  </head>
+
+  <body>
+    <ul class = "top">
+      <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
+      <li style="float:right"><a          >Sign in</a></li>
+      <li style="float:right"><a href="{% url 'CourseRate:register' %}">Register</a></li>
+    </ul>
+
+    <div class = "main">
+      {% block body_block %}
+        Base case
+      {% endblock %}
     </div>
-    </body>
+
+    <ul class = "bottom">
+      <li><a href="{% url 'CourseRate:about' %}">About us</a></li>
+      <li><a          >Contact</a></li>
+      <li><a          >F.A.Q</a></li>
+    </ul>
+  </body>
 </html>
