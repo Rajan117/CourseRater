@@ -12,6 +12,7 @@
 
     <style>
 
+
       body {
         margin:0;
         font-family: Helvetica, sans-serif;
@@ -68,8 +69,13 @@
   <body>
     <ul class = "top">
       <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
-      <li style="float:right"><a          >Sign in</a></li>
-      <li style="float:right"><a href="{% url 'CourseRate:register' %}">Register</a></li>
+
+        {% if user.is_authenticated %}
+        <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:logout' %}">Logout</a></li>
+        {% else %}
+        <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:login' %}">Login</a></li>
+        <li style="float:right"><a href="{% url 'CourseRate:register' %}">Register</a></li>
+        {% endif %}
     </ul>
 
     <div class = "main">
@@ -82,6 +88,11 @@
       <li><a href="{% url 'CourseRate:about' %}">About us</a></li>
       <li><a          >Contact</a></li>
       <li><a          >F.A.Q</a></li>
+        {% if user.is_authenticated %}
+        Hello {{ user.username }}
+        {% else %}
+        Not signed in
+        {% endif %}
     </ul>
   </body>
 </html>
