@@ -7,42 +7,10 @@
 {% endblock %}
 
 {% block style_block %}
-  body {
-    background-color: #ffd35b;
-  }
-
-  .container{
-    color: black;
-    margin: 0px auto;
-    height: 100%;
-    width: 100%;
-    position:relative;
-  }
-
-  .search{
-    text-align: center;
-    width: 900px;
-    height: 200px;
-    position: relative;
-    top: 300px;
-    right: 0px;
-    left: 0px;
-    margin: 0px auto;
-  }
-
-  input[type=text] {
-    font-size: 15px;
-    width: 75%;
-    padding: 15px 15px;
-    box-sizing: border-box;
-    border: 2px solid black;
-    outline: none;
-  }
-
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
-
 <div class = "container">
   <div class = "search">
     <h1> Find your university </h1>
@@ -52,5 +20,4 @@
     </form>
   </div>
 </div>
-
 {% endblock %}

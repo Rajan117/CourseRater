@@ -1,0 +1,32 @@
+
+body {
+  background-color: #ffd35b;
+}
+
+.container{
+  color: black;
+  margin: 0px auto;
+  height: 100%;
+  width: 100%;
+  position:relative;
+}
+
+.search{
+  text-align: center;
+  width: 900px;
+  height: 200px;
+  position: relative;
+  top: 300px;
+  right: 0px;
+  left: 0px;
+  margin: 0px auto;
+}
+
+input[type=text] {
+  font-size: 15px;
+  width: 75%;
+  padding: 15px 15px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  outline: none;
+}

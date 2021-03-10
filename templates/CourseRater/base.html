@@ -10,72 +10,25 @@
         {% endblock %}
     </title>
 
-    <style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    {% block style_block %}
+      Base case
+    {% endblock %}
 
-
-      body {
-        margin:0;
-        font-family: Helvetica, sans-serif;
-      }
-
-      .main {
-        margin-top: 55px;
-        margin-bottom: 55px;
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-
-      ul {
-        background-color: #ffd35b;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: visible;
-        width: 100%;
-        position:fixed;
-      }
-
-      ul.top {
-        top: 0;
-      }
-
-      ul.bottom {
-        bottom: 0;
-      }
-
-      li {
-        float: left;
-      }
-
-      li a {
-        display: block;
-        color: black;
-        text-align: center;
-        padding: 12px 20px;
-        text-decoration: none;
-      }
-
-      li a:hover:not(.active) {
-        color: white;
-      }
-
-      {% block style_block %}
-        Base case
-      {% endblock %}
-
-    </style>
   </head>
 
   <body>
     <ul class = "top">
-      <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
+      <li id="websiteName"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
 
-        {% if user.is_authenticated %}
-        <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:logout' %}">Logout</a></li>
-        {% else %}
-        <li style="text-shadow: 0.5px 0.5px #333;"><a href="{% url 'CourseRate:login' %}">Login</a></li>
-        <li style="float:right"><a href="{% url 'CourseRate:register' %}">Register</a></li>
-        {% endif %}
+      {% if user.is_authenticated %}
+        <li class="topRight"><a href="{% url 'CourseRate:logout' %}">Logout</a></li>
+        <li class="topRight"><a>Hello {{ user.username }}!</a></li>
+      {% else %}
+        <li class="topRight"><a href="{% url 'CourseRate:login' %}">Login</a></li>
+        <li class="topRight"><a href="{% url 'CourseRate:register' %}">Register</a></li>
+      {% endif %}
+      
     </ul>
 
     <div class = "main">
@@ -88,11 +41,6 @@
       <li><a href="{% url 'CourseRate:about' %}">About us</a></li>
       <li><a          >Contact</a></li>
       <li><a          >F.A.Q</a></li>
-        {% if user.is_authenticated %}
-        Hello {{ user.username }}
-        {% else %}
-        Not signed in
-        {% endif %}
     </ul>
   </body>
 </html>

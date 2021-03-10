@@ -1,0 +1,54 @@
+
+body {
+  margin:0;
+  font-family: Helvetica, sans-serif;
+}
+
+.main {
+  margin-top: 55px;
+  margin-bottom: 55px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul {
+  background-color: #ffd35b;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  width: 100%;
+  position:fixed;
+}
+
+ul.top {
+  top: 0;
+}
+
+ul.bottom {
+  bottom: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 12px 20px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  color: white;
+}
+
+#websiteName {
+  text-shadow: 0.5px 0.5px #333;
+}
+
+.topRight {
+  float:right;
+}
