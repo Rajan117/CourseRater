@@ -1,0 +1,31 @@
+
+body {
+  background-color: #ffd35b;
+}
+
+.container {
+  color: black;
+  right: 0px;
+  left: 0px;
+  margin: 0px auto;
+  text-align: center;
+  width: 400px;
+  position: absolute;
+  top: 25%;
+}
+
+.login{
+  border: 2px solid black;
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+a {
+  color: black;
+}
+
+a:hover:not(.active) {
+  color: white;
+  text-decoration: none;
+}
