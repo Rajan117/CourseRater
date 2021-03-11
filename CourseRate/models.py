@@ -20,6 +20,9 @@ class University(models.Model):
     def __str__(self):
         return self.university_name
 
+    class Meta:
+        verbose_name_plural = 'Universities'
+
 
 class Departments(models.Model):
 
@@ -28,7 +31,10 @@ class Departments(models.Model):
 
 
     def __str__(self):
-        return self.department_name + "|" + university.university_name
+        return self.department_name + " | " + self.university.university_name
+
+    class Meta:
+        verbose_name_plural = 'Departments'
 
 class Modules(models.Model):
 
@@ -36,5 +42,8 @@ class Modules(models.Model):
     module_name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
-        return (self.module_name + "|" + department.department_name + "|"
-                + department.university.university_name)
+        return (self.module_name + " | " + self.department.department_name + " | "
+                + self.department.university.university_name)
+
+    class Meta:
+        verbose_name_plural = 'Modules'
