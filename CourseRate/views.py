@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
+from CourseRate.models import University
 
 
 def home(request):
@@ -93,3 +94,17 @@ def add_university(request):
             print(form.errors)
 
     return render(request, 'CourseRater/add_university.html', {'form': form})
+
+def show_university(request, university_name_slug):
+    context_dict = {}
+
+    try:
+        university = University.objects.get(slug=university_name_slug)
+
+        context_dict['university'] = university
+
+    except University.DoesNotExist:
+
+        context_dict['university'] = None
+
+    return render(request, 'CourseRater/university.html', context=context_dict)

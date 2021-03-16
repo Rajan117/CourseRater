@@ -19,7 +19,7 @@ class University(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.university_name)
         super(University, self).save(*args, **kwargs)
 
     def __str__(self):
