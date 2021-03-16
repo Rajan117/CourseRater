@@ -58,9 +58,16 @@ class Review(models.Model):
 
     module = models.ForeignKey(Modules, on_delete=models.CASCADE)
 
+    RATING_CHOICES = ( ("0","0"), ("1","1"),
+                       ("2","2"), ("3","3"),
+                       ("4","4"), ("5","5"),
+                       ("6","6"), ("7","7"),
+                       ("8","8"), ("9","9"),
+                       ("10","10") )
+
     rev_title = models.CharField(max_length=50)
     rev_text = models.CharField(max_length=750)
-    rev_rating = models.IntegerField()
+    rev_rating = models.CharField(max_length = 30, choices=RATING_CHOICES)
     rev_upvotes = models.IntegerField(default =0)
     rev_downvotes = models.IntegerField(default=0)
 
