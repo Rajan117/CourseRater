@@ -23,4 +23,4 @@ class UniversityForm(forms.ModelForm):
 
     class Meta:
         model = University
-        fields = ('name',)
+        fields = ('university_name',)

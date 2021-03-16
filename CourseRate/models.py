@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.template.defaultfilters import slugify
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
@@ -16,6 +16,11 @@ class UserProfile(models.Model):
 class University(models.Model):
 
     university_name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(University, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.university_name
