@@ -27,7 +27,7 @@ class University(models.Model):
 class Departments(models.Model):
 
     university = models.ForeignKey(University, on_delete=models.CASCADE)
-    department_name = models.CharField(max_length=200, unique=True)
+    department_name = models.CharField(max_length=200)
 
 
     def __str__(self):
@@ -39,7 +39,7 @@ class Departments(models.Model):
 class Modules(models.Model):
 
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
-    module_name = models.CharField(max_length=200, unique=True)
+    module_name = models.CharField(max_length=200)
 
     def __str__(self):
         return (self.module_name + " | " + self.department.department_name + " | "
