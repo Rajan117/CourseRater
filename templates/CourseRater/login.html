@@ -15,10 +15,9 @@ Login
   <div class="login">
   <form id="login_form" method="post" action="{% url 'CourseRate:login' %}">
     {% csrf_token %}
-    Username: <br /><input type="text" name="username" value="" size="50" />
-    <br /><br />
-    Password: <br /><input type="password" name="password" value="" size="50" />
-    <br /><br />
+    Username: <input type="text" name="username" value="" /> <br /><br />
+    Password: <input type="password" name="password" value="" /> <br />
+    <br />
     <input type="submit" value="Login" /><br />
   </form>
   </div>
