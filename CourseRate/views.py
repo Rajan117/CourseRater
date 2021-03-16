@@ -72,12 +72,13 @@ def user_login(request):
     else:
         return render(request, 'CourseRater/login.html')
 
+
 @login_required
 def user_logout(request):
-
     logout(request)
 
     return redirect(reverse('CourseRate:home'))
+
 
 def add_university(request):
     form = UniversityForm()
@@ -92,5 +93,3 @@ def add_university(request):
             print(form.errors)
 
     return render(request, 'CourseRater/add_university.html', {'form': form})
-
-
