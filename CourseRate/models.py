@@ -52,3 +52,20 @@ class Modules(models.Model):
 
     class Meta:
         verbose_name_plural = 'Modules'
+
+
+class Review(models.Model):
+
+    module = models.ForeignKey(Modules, on_delete=models.CASCADE)
+
+    rev_title = models.CharField(max_length=50)
+    rev_text = models.CharField(max_length=750)
+    rev_rating = models.IntegerField()
+    rev_upvotes = models.IntegerField(default =0)
+    rev_downvotes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return (self.module.module_name + '\n' + self.rev_text)
+
+    class Meta:
+        verbose_name_plural = 'Reviews'
