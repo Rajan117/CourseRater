@@ -5,6 +5,7 @@ from CourseRate.models import UserProfile, University, Departments, Modules
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(help_text = " ")
 
     class Meta:
         model = User
@@ -12,6 +13,7 @@ class UserForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    
     class Meta:
         model = UserProfile
         fields = ('website', 'picture',)

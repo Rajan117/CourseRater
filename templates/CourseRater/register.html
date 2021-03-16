@@ -6,19 +6,27 @@
     Register
 {% endblock %}
 
+{% block style_block %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+{% endblock %}
 
 {% block body_block %}
-<h1>Register for Course Rater</h1>
+<div class = "container">
 {% if registered %}
-<strong>Thank you for registering!</strong>
-<a href="{% url 'CourseRate:home' %}">Return to the homepage.</a><br />
+<h1>Thank you for registering!</h1>
+<a href="{% url 'CourseRate:home' %}">Return to the homepage</a><br />
+
 {% else %}
-<strong>Register here!</strong><br />
+<h1>Register for CourseRater</h1>
+<div class="register">
 <form id="user_form" method="post" action="{% url 'CourseRate:register' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ user_form.as_p }}
     {{ profile_form.as_p }}
     <input type="submit" name="submit" value="Register" />
 </form>
+</div>
+<p>Already have an account? <a href="{% url 'CourseRate:login' %}">Sign in</a></p>
 {% endif %}
+</div>
 {% endblock %}
