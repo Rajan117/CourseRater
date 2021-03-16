@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from CourseRate.forms import UserForm, UserProfileForm
+from CourseRate.forms import UserForm, UserProfileForm, UniversityForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
@@ -78,4 +78,19 @@ def user_logout(request):
     logout(request)
 
     return redirect(reverse('CourseRate:home'))
+
+def add_university(request):
+    form = UniversityForm()
+
+    if request.method == 'POST':
+        form = UniversityForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('/CourseRate/')
+        else:
+            print(form.errors)
+
+    return render(request, 'CourseRater/add_university.html', {'form': form})
+
 

@@ -20,7 +20,7 @@
   <body>
     <ul class = "top">
       <li id="websiteName"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
-
+        <li id="topRight"><a href="{% url 'CourseRate:add_university' %}">Add University Page</a></li>
       {% if user.is_authenticated %}
         <li class="topRight"><a href="{% url 'CourseRate:logout' %}">Logout</a></li>
         <li class="topRight"><a>Hello {{ user.username }}!</a></li>
