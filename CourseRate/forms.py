@@ -19,7 +19,6 @@ class UserProfileForm(forms.ModelForm):
 
 class UniversityForm(forms.ModelForm):
     name = forms.CharField(max_length=200, help_text="Please enter the name of the university.")
-    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = University
