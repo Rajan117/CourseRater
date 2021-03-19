@@ -19,7 +19,7 @@
         <ul>
         <strong>Departments:</strong>
         {% for department in departments %}
-            <li><a>{{ department.department_name }}</a></li>
+            <li><a href="{% url 'CourseRate:show_department' university.slug department.slug %}">{{ department.department_name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

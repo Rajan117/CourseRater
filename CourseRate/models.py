@@ -32,6 +32,11 @@ class University(models.Model):
 class Departments(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     department_name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.department_name)
+        super(Departments, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.department_name + " | " + self.university.university_name
@@ -53,20 +58,19 @@ class Modules(models.Model):
 
 
 class Review(models.Model):
-
     module = models.ForeignKey(Modules, on_delete=models.CASCADE)
 
-    RATING_CHOICES = ( ("0","0"), ("1","1"),
-                       ("2","2"), ("3","3"),
-                       ("4","4"), ("5","5"),
-                       ("6","6"), ("7","7"),
-                       ("8","8"), ("9","9"),
-                       ("10","10") )
+    RATING_CHOICES = (("0", "0"), ("1", "1"),
+                      ("2", "2"), ("3", "3"),
+                      ("4", "4"), ("5", "5"),
+                      ("6", "6"), ("7", "7"),
+                      ("8", "8"), ("9", "9"),
+                      ("10", "10"))
 
     rev_title = models.CharField(max_length=50)
     rev_text = models.CharField(max_length=750)
-    rev_rating = models.CharField(max_length = 30, choices=RATING_CHOICES)
-    rev_upvotes = models.IntegerField(default =0)
+    rev_rating = models.CharField(max_length=30, choices=RATING_CHOICES)
+    rev_upvotes = models.IntegerField(default=0)
     rev_downvotes = models.IntegerField(default=0)
 
     def __str__(self):

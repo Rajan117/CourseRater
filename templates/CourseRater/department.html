@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends  'CourseRater/base.html' %}
+{% load static %}
+
+{% block title_block %}
+                Department
+{% endblock %}
+
+
+{% block style_block %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+<div>
+{{ university.university_name }}
+{% if department %}
+    <strong>{{ department.department_name }}</strong>
+{% else %}
+    <strong>This department does not exist for the university.</strong>
+{% endif %}
+</div>
+{% endblock %}
