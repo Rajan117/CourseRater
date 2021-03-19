@@ -1,0 +1,22 @@
+.main{
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 80px;
+}
+
+.departmentList{
+  height:525px;
+  width:100%;
+  margin-top: 20px;
+  background-color: white;
+  overflow:hidden;
+  overflow-y: scroll;
+}
+
+.departments{
+  float: left;
+  clear: left;
+  margin-bottom: 7px;
+  background-color: #ffd35b;
+  width: 500px;
+}

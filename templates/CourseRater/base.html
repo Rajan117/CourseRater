@@ -10,6 +10,7 @@
         {% endblock %}
     </title>
 
+    
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
     {% block style_block %}
       Base case
@@ -28,7 +29,7 @@
         <li class="topRight"><a href="{% url 'CourseRate:login' %}">Login</a></li>
         <li class="topRight"><a href="{% url 'CourseRate:register' %}">Register</a></li>
       {% endif %}
-      
+
     </ul>
 
     <div class = "main">

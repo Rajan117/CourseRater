@@ -9,15 +9,16 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/department.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
-<div>
-{{ university.university_name }}
+<div class="departmentTitle">
 {% if department %}
-    <strong>{{ department.department_name }}</strong>
+   {{ university.university_name }}
+  <h1>{{ department.department_name }}</h1>
 {% else %}
-    <strong>This department does not exist for the university.</strong>
+    <strong>The department you searched for does not currently exist in our database.</strong>
 {% endif %}
 </div>
 {% endblock %}
