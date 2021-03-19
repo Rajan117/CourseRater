@@ -15,6 +15,16 @@
 <div>
 {% if university %}
     <h1>{{ university.university_name }}</h1>
+    {% if departments %}
+        <ul>
+        <strong>Departments:</strong>
+        {% for department in departments %}
+            <li><a>{{ department.department_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <strong>This university does not have any departments yet.</strong>
+    {% endif %}
 {% else %}
     This university does not exist.
 {% endif %}

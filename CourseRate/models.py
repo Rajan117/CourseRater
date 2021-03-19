@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -14,7 +15,6 @@ class UserProfile(models.Model):
 
 
 class University(models.Model):
-
     university_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True)
 
@@ -30,10 +30,8 @@ class University(models.Model):
 
 
 class Departments(models.Model):
-
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     department_name = models.CharField(max_length=200)
-
 
     def __str__(self):
         return self.department_name + " | " + self.university.university_name
@@ -41,8 +39,8 @@ class Departments(models.Model):
     class Meta:
         verbose_name_plural = 'Departments'
 
-class Modules(models.Model):
 
+class Modules(models.Model):
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     module_name = models.CharField(max_length=200)
 
