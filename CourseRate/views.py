@@ -123,7 +123,7 @@ def show_department(request, university_name_slug, department_name_slug):
         context_dict['university'] = university
 
         try:
-            department = Departments.objects.filter(university=university, slug=department_name_slug)
+            department = Departments.objects.get(university=university, slug=department_name_slug)
             context_dict['department'] = department
 
         except Departments.DoesNotExist:
@@ -133,5 +133,7 @@ def show_department(request, university_name_slug, department_name_slug):
 
         context_dict['university'] = None
         return render(request, 'CourseRater/university.html', context=context_dict)
+
+    print(context_dict)
 
     return render(request, 'CourseRater/department.html', context=context_dict)
