@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from CourseRate.models import University, Departments, Modules
+from CourseRate.models import University, Departments, Modules, UserProfile
 
 def populate():
 
@@ -47,6 +47,11 @@ def add_module(department, name):
     m = Modules.objects.get_or_create(department=department, module_name = name)[0]
     m.save()
     return m
+
+
+#def add_user():
+
+#def add_review():
 
 
 if __name__ == '__main__':
