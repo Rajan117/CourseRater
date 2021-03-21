@@ -9,14 +9,30 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/university.css' %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/university.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
-<div>
+<div class = "main">
 {% if university %}
     <h1>{{ university.university_name }}</h1>
+    {% if departments %}
+        <p>Choose a department at the {{ university.university_name }} to find relevant courses.</p>
+        <strong>Search department: </strong>
+        <input class="form-control" id="search" type="text" placeholder="Search..">
+        <ul class="departmentList" id="depList">
+        {% for department in departments %}
+        <li class="departments"><a href="{% url 'CourseRate:show_department' university.slug department.slug %}">{{ department.department_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <strong>This university does not have any departments yet.</strong>
+    {% endif %}
 {% else %}
-    This university does not exist.
+    <strong>The university you searched for does not currently exist in our database.</strong></br>
 {% endif %}
 </div>
 {% endblock %}
