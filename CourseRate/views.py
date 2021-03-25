@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from CourseRate.forms import UserForm, UserProfileForm, UniversityForm
+from CourseRate.forms import UserForm, UserProfileForm, UniversityForm, DepartmentForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
@@ -94,6 +94,33 @@ def add_university(request):
             print(form.errors)
 
     return render(request, 'CourseRater/add_university.html', {'form': form})
+
+
+def add_department(request, university_name_slug):
+
+    try:
+        university = University.objects.get(slug=university_name_slug)
+    except:
+        university = None
+        return redirect('/CourseRater/')
+
+    form = DepartmentForm()
+
+    if request.method == 'POST':
+        form = DepartmentForm(request.POST)
+
+        if form.is_valid():
+
+            if university:
+                department = form.save(commit=False)
+                department.university = university
+                department.save()
+                return redirect(reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form, 'university': university}
+    return render(request, 'CourseRater/add_department.html', context_dict)
 
 
 def show_university(request, university_name_slug):
