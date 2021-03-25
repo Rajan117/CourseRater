@@ -34,5 +34,6 @@
 {% else %}
     <strong>The university you searched for does not currently exist in our database.</strong></br>
 {% endif %}
+<a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a>
 </div>
 {% endblock %}
