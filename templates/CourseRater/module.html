@@ -9,12 +9,13 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/module.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
 <div class="moduleTitle">
 {% if module %}
-   {{ department.department_name }}
+    {{ university.university_name }} ◦ {{ department.department_name }}
   <h1>{{ module.module_name }}</h1>
 {% else %}
     <strong>This module does not exist for this department.</strong>

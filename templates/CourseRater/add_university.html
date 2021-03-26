@@ -8,9 +8,11 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/add_university.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
+<div class = "addUniversityMain">
 <h1>Add a University</h1>
     <div>
         <form id="university_form" method="post" action="/CourseRate/add_university/">
@@ -26,4 +28,5 @@
             <input type="submit" name="submit" value="Add University" />
         </form>
     </div>
+</div>
 {% endblock %}

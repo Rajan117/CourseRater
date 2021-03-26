@@ -16,24 +16,27 @@
 {% endblock %}
 
 {% block body_block %}
-<div class = "main">
+<div class = "universityMain">
 {% if university %}
     <h1>{{ university.university_name }}</h1>
     {% if departments %}
         <p>Choose a department at the {{ university.university_name }} to find relevant courses.</p>
         <strong>Search department: </strong>
-        <input class="form-control" id="search" type="text" placeholder="Search..">
+        <input class="form-control" id="search" type="text" placeholder="Search.."></br>
+        <p><a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a><p>
+
         <ul class="departmentList" id="depList">
         {% for department in departments %}
         <li class="departments"><a href="{% url 'CourseRate:show_department' university.slug department.slug %}">{{ department.department_name }}</a></li>
         {% endfor %}
         </ul>
+
     {% else %}
         <strong>This university does not have any departments yet.</strong>
+        <p><a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a><p>
     {% endif %}
 {% else %}
     <strong>The university you searched for does not currently exist in our database.</strong></br>
 {% endif %}
-<a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a>
 </div>
 {% endblock %}

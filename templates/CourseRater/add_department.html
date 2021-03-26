@@ -8,9 +8,11 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/add_department.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
+<div class="addDepartmentMain">
 <h1>Add a Department</h1>
     <div>
         <form id="university_form" method="post" action="/CourseRate/university/{{ university.slug }}/add_department/">

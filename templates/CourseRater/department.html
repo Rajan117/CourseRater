@@ -10,6 +10,9 @@
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/department.css' %}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/department.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
@@ -18,11 +21,15 @@
    {{ university.university_name }}
   <h1>{{ department.department_name }}</h1>
     {% if modules %}
+        <strong>Search course: </strong>
+        <input class="form-control" id="search" type="text" placeholder="Search..">
         <ul class="moduleList" id="moduleList">
         {% for module in modules %}
         <li class="modules"><a href="{% url 'CourseRate:show_module' university.slug department.slug module.slug%}">{{ module.module_name }}</a></li>
         {% endfor %}
         </ul>
+    {% else %}
+    <strong> The {{ department.department_name }} department at the {{ university.university_name }} does not currently have any courses. </strong>
     {% endif %}
 {% else %}
     <strong>The department you searched for does not currently exist in our database.</strong>

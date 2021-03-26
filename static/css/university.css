@@ -1,17 +1,20 @@
-.main{
-  margin-left: 50px;
-  margin-right: 50px;
+
+.universityMain{
   margin-top: 80px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .departmentList{
-  height:525px;
+  height:600px;
   width:100%;
   margin-top: 20px;
   background-color: white;
   overflow:hidden;
   overflow-y: scroll;
+  margin: 0 auto;
 }
+
 
 .departments{
   float: left;
@@ -19,4 +22,14 @@
   margin-bottom: 7px;
   background-color: #ffd35b;
   width: 500px;
+  display: inline;
+}
+
+a {
+  color: black;
+}
+
+a:hover:not(.active) {
+  color: #ffd35b;
+  text-decoration: none;
 }
