@@ -97,7 +97,6 @@ def add_university(request):
 
 
 def add_department(request, university_name_slug):
-
     try:
         university = University.objects.get(slug=university_name_slug)
     except:
@@ -115,7 +114,8 @@ def add_department(request, university_name_slug):
                 department = form.save(commit=False)
                 department.university = university
                 department.save()
-                return redirect(reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
+                return redirect(
+                    reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
         else:
             print(form.errors)
 
@@ -153,6 +153,9 @@ def show_department(request, university_name_slug, department_name_slug):
             department = Departments.objects.get(university=university, slug=department_name_slug)
             context_dict['department'] = department
 
+            modules = Modules.objects.filter(department=department)
+            context_dict['modules'] = modules
+
         except Departments.DoesNotExist:
             context_dict['department'] = None
 
@@ -161,6 +164,35 @@ def show_department(request, university_name_slug, department_name_slug):
         context_dict['university'] = None
         return render(request, 'CourseRater/university.html', context=context_dict)
 
-    print(context_dict)
-
     return render(request, 'CourseRater/department.html', context=context_dict)
+
+
+def show_module(request, university_name_slug, department_name_slug, module_name_slug):
+    context_dict = {}
+
+    try:
+        university = University.objects.get(slug=university_name_slug)
+        context_dict['university'] = university
+
+        try:
+            department = Departments.objects.get(university=university, slug=department_name_slug)
+            context_dict['department'] = department
+
+            try:
+                module = Modules.objects.get(department=department, slug=module_name_slug)
+                context_dict['module'] = module
+
+            except Modules.DoesNotExist:
+                context_dict['module'] = None
+
+        except Departments.DoesNotExist:
+            context_dict['department'] = None
+            return redirect(
+                reverse('CourseRate:show_department', kwargs={'department_name_slug': department_name_slug}))
+
+    except:
+        context_dict['university'] = None
+        return redirect(
+            reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
+
+    return render(request, 'CourseRater/module.html', context=context_dict)

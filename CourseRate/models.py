@@ -48,6 +48,11 @@ class Departments(models.Model):
 class Modules(models.Model):
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     module_name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.module_name)
+        super(Modules, self).save(*args, **kwargs)
 
     def __str__(self):
         return (self.module_name + " | " + self.department.department_name + " | "
@@ -74,7 +79,7 @@ class Review(models.Model):
     rev_downvotes = models.IntegerField(default=0)
 
     def __str__(self):
-        return (self.module.module_name + '\n' + self.rev_text)
+        return self.module.module_name + '\n' + self.rev_text
 
     class Meta:
         verbose_name_plural = 'Reviews'

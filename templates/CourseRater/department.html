@@ -17,6 +17,13 @@
 {% if department %}
    {{ university.university_name }}
   <h1>{{ department.department_name }}</h1>
+    {% if modules %}
+        <ul class="moduleList" id="moduleList">
+        {% for module in modules %}
+        <li class="modules"><a href="{% url 'CourseRate:show_module' university.slug department.slug module.slug%}">{{ module.module_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 {% else %}
     <strong>The department you searched for does not currently exist in our database.</strong>
 {% endif %}

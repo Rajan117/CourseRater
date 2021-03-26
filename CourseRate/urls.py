@@ -15,5 +15,5 @@ urlpatterns = [
     path('university/<slug:university_name_slug>/', views.show_university, name='show_university'),
     path('university/<slug:university_name_slug>/add_department/', views.add_department, name='add_department'),
     path('university/<slug:university_name_slug>/<slug:department_name_slug>/', views.show_department, name='show_department'),
-
+    path('university/<slug:university_name_slug>/<slug:department_name_slug>/<slug:module_name_slug>/', views.show_module, name='show_module'),
 ]
