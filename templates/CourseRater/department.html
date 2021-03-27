@@ -6,7 +6,6 @@
                 Department
 {% endblock %}
 
-
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/department.css' %}"/>
@@ -18,21 +17,27 @@
 {% block body_block %}
 <div class="departmentTitle">
 {% if department %}
-   {{ university.university_name }}
   <h1>{{ department.department_name }}</h1>
     {% if modules %}
+        <p>Choose a course from the department of {{ department.department_name }} at the {{ university.university_name }}.</p>
         <strong>Search course: </strong>
         <input class="form-control" id="search" type="text" placeholder="Search..">
+        <p> Can't find the course you're looking for? <a href="           ">Add a course to this department</a><p>
         <ul class="moduleList" id="moduleList">
         {% for module in modules %}
         <li class="modules"><a href="{% url 'CourseRate:show_module' university.slug department.slug module.slug%}">{{ module.module_name }}</a></li>
         {% endfor %}
         </ul>
+
     {% else %}
-    <strong> The {{ department.department_name }} department at the {{ university.university_name }} does not currently have any courses. </strong>
+    <p> The {{ department.department_name }} department at the {{ university.university_name }} does not currently have any courses. </p>
+    <p><a href="           ">Add a course to this department</a><p>
     {% endif %}
+
 {% else %}
-    <strong>The department you searched for does not currently exist in our database.</strong>
+    <h1> Oops! </h1>
+    <p>The department you searched for does not currently exist in our database.</p>
+    <p><a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a><p>
 {% endif %}
 </div>
 {% endblock %}

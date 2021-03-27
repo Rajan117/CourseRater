@@ -7,14 +7,13 @@
 {% endblock %}
 
 {% block style_block %}
-  /*margin:21px;*/
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}"/>
 {% endblock %}
 {% block body_block %}
-    <h1>
-    About Course Rater
-    </h1>
-    <p>
-    Course Rater is a website that allows students to post reviews on modules they took at their university.
-    </p>
-
+  <div class="aboutMain">
+    <h1>About Course Rater</h1>
+    <p>Course Rater is a website that allows students to rate and review university courses, as well as see the course ratings and reviews of other students.</p>
+    <p>Start by searching your university of interest <a href="{% url 'CourseRate:home' %}">here</a>.<p>
+  </div>
 {% endblock %}

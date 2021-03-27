@@ -1,0 +1,13 @@
+.aboutMain{
+  margin-top: 80px;
+  text-align: center;
+}
+
+a {
+  color: black;
+}
+
+a:hover:not(.active) {
+  color: #ffd35b;
+  text-decoration: none;
+}

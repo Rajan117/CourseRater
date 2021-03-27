@@ -23,7 +23,7 @@
         <p>Choose a department at the {{ university.university_name }} to find relevant courses.</p>
         <strong>Search department: </strong>
         <input class="form-control" id="search" type="text" placeholder="Search.."></br>
-        <p><a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a><p>
+        <p>Can't find the department you're looking for? <a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a><p>
 
         <ul class="departmentList" id="depList">
         {% for department in departments %}
@@ -31,12 +31,14 @@
         {% endfor %}
         </ul>
 
+
     {% else %}
         <strong>This university does not have any departments yet.</strong>
         <p><a href="{% url 'CourseRate:add_department' university.slug %}">Add a department to this university</a><p>
     {% endif %}
 {% else %}
     <strong>The university you searched for does not currently exist in our database.</strong></br>
+    <p><a href="{% url 'CourseRate:add_university' %}">Add a university page</a><p>
 {% endif %}
 </div>
 {% endblock %}

@@ -10,7 +10,6 @@
         {% endblock %}
     </title>
 
-    
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
     {% block style_block %}
       Base case
@@ -20,8 +19,8 @@
 
   <body>
     <ul class = "top">
-      <li id="websiteName"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
-        <li id="topRight"><a href="{% url 'CourseRate:add_university' %}">Add University Page</a></li>
+        <li id="websiteName"><a href="{% url 'CourseRate:home' %}">CourseRater</a></li>
+        <li><a href="{% url 'CourseRate:about' %}">About us</a></li>
       {% if user.is_authenticated %}
         <li class="topRight"><a href="{% url 'CourseRate:logout' %}">Logout</a></li>
         <li class="topRight"><a>Hello {{ user.username }}!</a></li>
@@ -37,11 +36,5 @@
         Base case
       {% endblock %}
     </div>
-
-    <ul class = "bottom">
-      <li><a href="{% url 'CourseRate:about' %}">About us</a></li>
-      <li><a          >Contact</a></li>
-      <li><a          >F.A.Q</a></li>
-    </ul>
   </body>
 </html>
