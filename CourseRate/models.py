@@ -32,10 +32,12 @@ class University(models.Model):
 class Departments(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     department_name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=False)
+    unique_slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.department_name)
+        self.unique_slug = slugify(self.university.university_name) + "-" + slugify(self.department_name)
         super(Departments, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -48,7 +50,7 @@ class Departments(models.Model):
 class Modules(models.Model):
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     module_name = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.module_name)
