@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from CourseRate.forms import UserForm, UserProfileForm, UniversityForm, DepartmentForm
+from CourseRate.forms import UserForm, UserProfileForm, UniversityForm, DepartmentForm, ModuleForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
@@ -121,6 +121,40 @@ def add_department(request, university_name_slug):
 
     context_dict = {'form': form, 'university': university}
     return render(request, 'CourseRater/add_department.html', context_dict)
+
+def add_module(request, university_name_slug, department_name_slug):
+    try:
+        university = University.objects.get(slug=university_name_slug)
+    except:
+        university = None
+        return redirect('/CourseRater/')
+
+    try:
+        department = Departments.objects.get(university=university, slug=department_name_slug)
+    except:
+        department = None
+        return redirect(
+            reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
+
+    form = ModuleForm()
+
+    if request.method == 'POST':
+        form = ModuleForm(request.POST)
+
+        if form.is_valid():
+
+            if university and department:
+                module = form.save(commit=False)
+                module.department = department
+                module.save()
+                return redirect(
+                    reverse('CourseRate:show_department', kwargs={'university_name_slug': university_name_slug, 'department_name_slug': department_name_slug}))
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form, 'university': university, 'department': department}
+    return render(request, 'CourseRater/add_module.html', context_dict)
+
 
 
 def show_university(request, university_name_slug):

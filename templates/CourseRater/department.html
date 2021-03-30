@@ -31,7 +31,7 @@
 
     {% else %}
     <p> The {{ department.department_name }} department at the {{ university.university_name }} does not currently have any courses. </p>
-    <p><a href="           ">Add a course to this department</a><p>
+    <p><a href="{% url 'CourseRate:add_module' university.slug department.slug %}">A a module to this department.</a><p>
     {% endif %}
 
 {% else %}

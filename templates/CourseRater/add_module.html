@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends  'CourseRater/base.html' %}
+{% load static %}
+
+{% block title_block %}
+                Add department page
+{% endblock %}
+
+{% block style_block %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+<div class="addModuleMain">
+  <h1>Add a Module</h1>
+     <div>
+      <form id="university_form" method="post" action="/CourseRate/university/{{ university.slug }}/{{ department.slug }}/add_module/">
+          {% csrf_token %}
+          {% for hidden in form.hidden_fields %}
+              {{ hidden }}
+          {% endfor %}
+          {% for field in form.visible_fields %}
+              {{ field.errors }}
+              {{ field.help_text }}
+              {{ field }}
+          {% endfor %}
+        <input type="submit" name="submit" value="Add Module" />
+      </form>
+    </div>
+</div>
+{% endblock %}
