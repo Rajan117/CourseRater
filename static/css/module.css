@@ -1,6 +1,77 @@
 
-.moduleTitle{
+.moduleTitle {
   margin-left: 80px;
   margin-right: 80px;
   margin-top: 80px;
+}
+
+p.smallFont {
+  font-size: 14px;
+}
+
+a {
+  color: black;
+}
+
+a:hover:not(.active) {
+  color: #ffd35b;
+  text-decoration: none;
+}
+
+#thumbsUp::before {
+  content: '';
+  background:url('https://img.icons8.com/material-sharp/24/000000/thumb-up.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+}
+
+#reviews::before {
+  content: '';
+  background:url('https://img.icons8.com/cotton/64/000000/seo-text.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+}
+
+#pen::before {
+  content: '';
+  background:url('https://img.icons8.com/pastel-glyph/64/000000/create-new--v2.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+}
+
+#fullStar::before {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/50/000000/star--v1.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+}
+
+#emptyStar::before {
+  content: '';
+  background:url('https://img.icons8.com/ios/50/000000/star--v1.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+}
+
+#halfStar::before {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/24/000000/star-half.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+}
+
+.inline{
+  display:inline;
 }
