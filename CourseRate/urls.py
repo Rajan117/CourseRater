@@ -17,4 +17,5 @@ urlpatterns = [
     path('university/<slug:university_name_slug>/<slug:department_name_slug>/', views.show_department, name='show_department'),
     path('university/<slug:university_name_slug>/<slug:department_name_slug>/add_module/', views.add_module, name='add_module'),
     path('university/<slug:university_name_slug>/<slug:department_name_slug>/<slug:module_name_slug>/', views.show_module, name='show_module'),
+    path('university/<slug:university_name_slug>/<slug:department_name_slug>/<slug:module_name_slug>/add_review/', views.add_review, name='add_review'),
 ]

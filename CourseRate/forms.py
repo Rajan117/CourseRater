@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from CourseRate.models import UserProfile, University, Departments, Modules
+from CourseRate.models import UserProfile, University, Departments, Modules, Review
 
 
 class UserForm(forms.ModelForm):
@@ -40,3 +40,15 @@ class ModuleForm(forms.ModelForm):
     class Meta:
         model = Modules
         fields = ('module_name',)
+
+
+class ReviewForm(forms.ModelForm):
+    rev_title = forms.CharField(max_length=50, help_text="Enter the title of the review.")
+    rev_text = forms.CharField(max_length=750, help_text="Write you review here, max 750 characters.")
+    rev_rating = forms.CharField(max_length=30, help_text="Leave your rating here.")
+    rev_upvotes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    rev_downvotes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+
+    class Meta:
+        model = Review
+        fields = ('rev_title', 'rev_text', 'rev_rating')

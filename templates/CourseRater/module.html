@@ -20,5 +20,13 @@
 {% else %}
     <strong>This module does not exist for this department.</strong>
 {% endif %}
+{% if reviews %}
+    {% for review in reviews %}
+        {{ review.rev_title }}
+    {% endfor %}
+{% else %}
+    There are noe reviews for this module yet.
+{% endif %}
+<p><a href="{% url 'CourseRate:add_review' university.slug department.slug module.slug%}">Add a review.</a><p>
 </div>
 {% endblock %}

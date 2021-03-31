@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from CourseRate.forms import UserForm, UserProfileForm, UniversityForm, DepartmentForm, ModuleForm
+from CourseRate.forms import UserForm, UserProfileForm, UniversityForm, DepartmentForm, ModuleForm, ReviewForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
-from CourseRate.models import University, Departments, Modules
+from CourseRate.models import University, Departments, Modules, Review
 
 
 def home(request):
@@ -122,6 +122,7 @@ def add_department(request, university_name_slug):
     context_dict = {'form': form, 'university': university}
     return render(request, 'CourseRater/add_department.html', context_dict)
 
+
 def add_module(request, university_name_slug, department_name_slug):
     try:
         university = University.objects.get(slug=university_name_slug)
@@ -148,13 +149,57 @@ def add_module(request, university_name_slug, department_name_slug):
                 module.department = department
                 module.save()
                 return redirect(
-                    reverse('CourseRate:show_department', kwargs={'university_name_slug': university_name_slug, 'department_name_slug': department_name_slug}))
+                    reverse('CourseRate:show_department', kwargs={'university_name_slug': university_name_slug,
+                                                                  'department_name_slug': department_name_slug}))
         else:
             print(form.errors)
 
     context_dict = {'form': form, 'university': university, 'department': department}
     return render(request, 'CourseRater/add_module.html', context_dict)
 
+
+def add_review(request, university_name_slug, department_name_slug, module_name_slug):
+    try:
+        university = University.objects.get(slug=university_name_slug)
+    except:
+        university = None
+        return redirect('/CourseRater/')
+
+    try:
+        department = Departments.objects.get(university=university, slug=department_name_slug)
+    except:
+        department = None
+        return redirect(
+            reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
+
+    try:
+        module = Modules.objects.get(department=department, slug=module_name_slug)
+    except:
+        module = None
+        return redirect(
+            reverse('CourseRate:show_department', kwargs={'university_name_slug': university_name_slug,
+                                                          'department_name_slug': department_name_slug}))
+
+    form = ReviewForm()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+
+        if form.is_valid():
+
+            if university and department:
+                review = form.save(commit=False)
+                review.module = module
+                review.save()
+                return redirect(
+                    reverse('CourseRate:show_module', kwargs={'university_name_slug': university_name_slug,
+                                                                  'department_name_slug': department_name_slug,
+                                                                  'module_name_slug': module_name_slug}))
+        else:
+            print(form.errors)
+
+    context_dict = {'form': form, 'university': university, 'department': department, 'module': module}
+    return render(request, 'CourseRater/add_review.html', context_dict)
 
 
 def show_university(request, university_name_slug):
@@ -215,6 +260,12 @@ def show_module(request, university_name_slug, department_name_slug, module_name
             try:
                 module = Modules.objects.get(department=department, slug=module_name_slug)
                 context_dict['module'] = module
+
+                try:
+                    reviews = Review.objects.filter(module=module)
+                    context_dict['reviews'] = reviews
+                except:
+                    context_dict['reviews'] = None
 
             except Modules.DoesNotExist:
                 context_dict['module'] = None

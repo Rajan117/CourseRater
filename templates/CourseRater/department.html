@@ -22,7 +22,7 @@
         <p>Choose a course from the department of {{ department.department_name }} at the {{ university.university_name }}.</p>
         <strong>Search course: </strong>
         <input class="form-control" id="search" type="text" placeholder="Search..">
-        <p> Can't find the course you're looking for? <a href="           ">Add a course to this department</a><p>
+        <p> Can't find the course you're looking for? <a href="{% url 'CourseRate:add_module' university.slug department.slug %}">A a module to this department.</a><p>
         <ul class="moduleList" id="moduleList">
         {% for module in modules %}
         <li class="modules"><a href="{% url 'CourseRate:show_module' university.slug department.slug module.slug%}">{{ module.module_name }}</a></li>
