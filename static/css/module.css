@@ -5,6 +5,10 @@
   margin-top: 80px;
 }
 
+p.reviewsList{
+
+}
+
 p.smallFont {
   font-size: 14px;
 }
@@ -25,6 +29,7 @@ a:hover:not(.active) {
   position:absolute;
   width:14px;
   height:14px;
+  z-index:-1;
 }
 
 #reviews::before {
@@ -34,6 +39,7 @@ a:hover:not(.active) {
   position:absolute;
   width:14px;
   height:14px;
+  z-index:-1;
 }
 
 #pen::before {
@@ -43,6 +49,7 @@ a:hover:not(.active) {
   position:absolute;
   width:14px;
   height:14px;
+  z-index:-1;
 }
 
 #fullStar::before {
@@ -52,6 +59,7 @@ a:hover:not(.active) {
   position:absolute;
   width:14px;
   height:14px;
+  z-index:-1;
 }
 
 #emptyStar::before {
@@ -61,6 +69,7 @@ a:hover:not(.active) {
   position:absolute;
   width:14px;
   height:14px;
+  z-index:-1;
 }
 
 #halfStar::before {
@@ -70,6 +79,7 @@ a:hover:not(.active) {
   position:absolute;
   width:14px;
   height:14px;
+  z-index:-1;
 }
 
 .inline{

@@ -27,6 +27,7 @@
     <strong>This course does not exist for this department.</strong>
 {% endif %}
 {% if reviews %}
+    <div class="reviewsList">
     {% for review in reviews %}
         <p> {{ review.rev_title }} </p>
 
@@ -82,10 +83,11 @@
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         {% endif %}
 
-        <p>{{ review.rev_text }}<p>
+        <p class="smallFont">{{ review.rev_text }}<p>
         <br>
         <br>
     {% endfor %}
+  </div>
 {% else %}
     There are no reviews for this course yet.
 {% endif %}
