@@ -17,16 +17,25 @@
 {% if module %}
     {{ university.university_name }} ◦ {{ department.department_name }}
   <h1>{{ module.module_name }}</h1>
+  <p>Average rating:</p>
+  <p>Reviews:</p>
+  <hr />
+  <p><a href="{% url 'CourseRate:add_review' university.slug department.slug module.slug%}">Add a review</a><p>
+  <hr />
+  <br>
 {% else %}
-    <strong>This module does not exist for this department.</strong>
+    <strong>This course does not exist for this department.</strong>
 {% endif %}
 {% if reviews %}
     {% for review in reviews %}
-        {{ review.rev_title }}
+        <p> {{ review.rev_title }} </p>
+        <p>Course rating: {{ review.rev_rating }}/10</p>
+        <p>{{ review.rev_text }}<p>
+        <br>
+        <br>
     {% endfor %}
 {% else %}
-    There are noe reviews for this module yet.
+    There are no reviews for this course yet.
 {% endif %}
-<p><a href="{% url 'CourseRate:add_review' university.slug department.slug module.slug%}">Add a review.</a><p>
 </div>
 {% endblock %}

@@ -35,7 +35,7 @@ class DepartmentForm(forms.ModelForm):
 
 
 class ModuleForm(forms.ModelForm):
-    module_name = forms.CharField(max_length=200, help_text="Please enter the name of the module.")
+    module_name = forms.CharField(max_length=200, help_text="Please enter the name of the course.")
 
     class Meta:
         model = Modules
