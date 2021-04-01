@@ -51,9 +51,12 @@ class Modules(models.Model):
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     module_name = models.CharField(max_length=200)
     slug = models.SlugField(unique=False)
+    unique_slug = models.SlugField(unique=True)
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.module_name)
+        self.unique_slug = self.department.unique_slug + "-" + slugify(self.module_name)
         super(Modules, self).save(*args, **kwargs)
 
     def __str__(self):
