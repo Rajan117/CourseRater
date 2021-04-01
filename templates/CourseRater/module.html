@@ -16,7 +16,8 @@
 <div class="moduleTitle">
 {% if module %}
   <h1>{{ module.module_name }}</h1>
-  <p class="uniAndDep">{{ university.university_name }}&nbsp; - &nbsp;{{ department.department_name }}</p>
+  <p class="uniAndDep"><a href="{% url 'CourseRate:show_university' university.slug %}">{{ university.university_name }}</a>&nbsp; - &nbsp;
+    <a href="{% url 'CourseRate:show_department' university.slug department.slug %}">{{ department.department_name }}</a></p>
   <p class="smallFont" id="thumbsUp">&nbsp;&nbsp;&nbsp;&nbsp; Average rating:</p>
   <p class="smallFont" id="reviews">&nbsp;&nbsp;&nbsp;&nbsp; Reviews:</p>
   <hr />

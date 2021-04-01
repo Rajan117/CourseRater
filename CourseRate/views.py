@@ -9,7 +9,7 @@ from CourseRate.models import University, Departments, Modules, Review
 
 
 def home(request):
-    context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
+    context_dict = {}
     response = render(request, 'CourseRater/home.html', context=context_dict)
     return response
 

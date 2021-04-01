@@ -8,12 +8,15 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+  <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
 
   <div class = "search">
-    <h1> Find your university </h1>
+    <h1> Find your
+    <span class="txt-rotate" data-period="2500" data-rotate='[ "university", "department", "course"]'></span>
+    </h1>
     <h3> Search your university to find course ratings and start rating courses. </h3>
     <form>
       <input type="text" id="lname" name="lname" placeholder="Search...">
