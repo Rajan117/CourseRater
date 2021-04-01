@@ -5,6 +5,10 @@
   margin-top: 80px;
 }
 
+.uniAndDep{
+  line-height: 0.3em;
+}
+
 p.reviewsList{
 
 }
@@ -74,7 +78,7 @@ a:hover:not(.active) {
 
 #halfStar::before {
   content: '';
-  background:url('https://img.icons8.com/ios-filled/24/000000/star-half.png');
+  background:url('https://img.icons8.com/ios-filled/96/000000/star-half-empty.png');
   background-size:cover;
   position:absolute;
   width:14px;

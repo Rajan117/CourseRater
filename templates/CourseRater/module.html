@@ -15,12 +15,16 @@
 {% block body_block %}
 <div class="moduleTitle">
 {% if module %}
-  <p>{{ university.university_name }}&nbsp; - &nbsp;{{ department.department_name }}</p>
   <h1>{{ module.module_name }}</h1>
+  <p class="uniAndDep">{{ university.university_name }}&nbsp; - &nbsp;{{ department.department_name }}</p>
   <p class="smallFont" id="thumbsUp">&nbsp;&nbsp;&nbsp;&nbsp; Average rating:</p>
   <p class="smallFont" id="reviews">&nbsp;&nbsp;&nbsp;&nbsp; Reviews:</p>
   <hr />
+  {% if user.is_authenticated %}
   <p class="smallFont" id="pen">&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'CourseRate:add_review' university.slug department.slug module.slug%}">Add a review</a><p>
+  {% else %}
+  <p class="smallFont" id="pen">&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'CourseRate:login' %}">Login to add a review</a><p>
+  {% endif %}
   <hr />
   <br>
 {% else %}
@@ -34,39 +38,59 @@
         {% if review.rev_rating == '1' %}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '2'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '3'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '4'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '5'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '6'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '7'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '8'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+        <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
         {% elif  review.rev_rating == '9'%}
         <p class = "inline">Course rating: </p>
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
