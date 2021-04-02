@@ -26,9 +26,37 @@ a:hover:not(.active) {
   text-decoration: none;
 }
 
+hr {
+  border-top: 0.9px solid gray;
+}
+
+.review {
+  padding-bottom: 6px;
+  padding-top:6px;
+}
+
+.revText {
+  padding-right: 200px;
+}
+
+.likeDislike {
+  width: 110px;
+  float:right;
+}
+
 #thumbsUp::before {
   content: '';
   background:url('https://img.icons8.com/material-sharp/24/000000/thumb-up.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+  z-index:-1;
+}
+
+#thumbsDown::before{
+  content: '';
+  background:url('https://img.icons8.com/material/24/000000/thumbs-down--v1.png');
   background-size:cover;
   position:absolute;
   width:14px;
