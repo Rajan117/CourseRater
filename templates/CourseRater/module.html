@@ -21,7 +21,7 @@
   <p class="uniAndDep"><a href="{% url 'CourseRate:show_university' university.slug %}">{{ university.university_name }}</a>&nbsp; - &nbsp;
     <a href="{% url 'CourseRate:show_department' university.slug department.slug %}">{{ department.department_name }}</a></p>
   <p class="smallFont inline" id="emptyStar"></p>
-  <p class="smallFont inline" id="ratingsAverage"></p>
+  <p class="smallFont inline" id="ratingsAverage">&nbsp;&nbsp;&nbsp;&nbsp; This course has not been rated yet. </p>
   <br>
   <p class="smallFont inline" id="reviews"></p>
   <p class="smallFont inline" id="reviewsNumber"></p>

@@ -5,15 +5,18 @@ $(document).ready(function() {
   $('#reviewsNumber').html(reviewsString);
 
   // Show the average rating (as percentage)
-  total = 0;
-  var revRatings = document.getElementsByClassName('reviewRating');
-  for (var i=0; i<reviews; i++){
-    var ratingValue = parseInt(revRatings[i].innerHTML);
-    total += ratingValue;
+  if (reviews != 0){
+    total = 0;
+    var revRatings = document.getElementsByClassName('reviewRating');
+    for (var i=0; i<reviews; i++){
+      var ratingValue = parseInt(revRatings[i].innerHTML);
+      total += ratingValue;
+    }
+    average = parseInt(total / reviews * 10);
+    var averageCourseRating = "&nbsp;&nbsp;&nbsp;&nbsp; Average rating: " + average.toString() + "%";
+    $('#ratingsAverage').html(averageCourseRating);
   }
-  average = parseInt(total / reviews * 10);
-  var averageCourseRating = "&nbsp;&nbsp;&nbsp;&nbsp; Average rating: " + average.toString() + "%";
-  $('#ratingsAverage').html(averageCourseRating);
+
 
   // Like button
   $('.likeButton').on('click', function() {
