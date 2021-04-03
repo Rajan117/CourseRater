@@ -40,8 +40,18 @@ hr {
 }
 
 .likeDislike {
-  width: 110px;
-  float:right;
+  width: 120px;
+  float: right;
+}
+
+.fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: #727272
 }
 
 #thumbsUp::before {
@@ -63,6 +73,13 @@ hr {
   height:14px;
   z-index:-1;
 }
+
+
+#thumbsDown::before:hover{
+  color: red;
+}
+
+
 
 #reviews::before {
   content: '';

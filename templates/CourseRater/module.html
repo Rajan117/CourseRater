@@ -103,17 +103,16 @@
         {% endif %}
 
         <div class="likeDislike">
-        <p class="inline smallFont" id="thumbsUp">&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <p class="inline smallFont" >{{ review.rev_upvotes }} </p>
         {% if user.is_authenticated %}
-        <button class="likeButton" data-reviewid="{{ review.id }}" type="button">Like</button>
+        <p class="inline smallFont" ><i data-reviewid="{{ review.id }}" class="fa fa-thumbs-up likeButton"> {{ review.rev_upvotes }}</i></p>
+        <br>
+        <p class="inline smallFont" ><i data-reviewid="{{ review.id }}" class="fa fa-thumbs-down dislikeButton"> {{ review.rev_downvotes }}</i></p>
+        {% else %}
+        <p class="inline smallFont" ><i class="fa fa-thumbs-up"> {{ review.rev_upvotes }}</i></p>
+        <br>
+        <p class="inline smallFont" ><i class="fa fa-thumbs-down"> {{ review.rev_downvotes }}</i></p>
         {% endif %}
         <br>
-        <p class="inline smallFont" id="thumbsDown">&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <p id="downvotes" class="inline smallFont" >{{ review.rev_downvotes }}</p>
-        {% if user.is_authenticated %}
-        <button class="dislikeButton" data-reviewid="{{ review.id }}" type="button">Dislike</button>
-        {% endif %}
         </div>
 
         <p class="smallFont revText">{{ review.rev_text }}<p>
