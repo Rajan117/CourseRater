@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
 from CourseRate.models import University, Departments, Modules, Review, UserProfile, User
+from django.views.generic import View
 
 
 def home(request):
@@ -304,3 +305,27 @@ def show_module(request, university_name_slug, department_name_slug, module_name
             reverse('CourseRate:show_university', kwargs={'university_name_slug': university_name_slug}))
 
     return render(request, 'CourseRater/module.html', context=context_dict)
+
+
+class LikeReview(View):
+
+    def get(self, request):
+        review_id = request.GET['review_id']
+
+        review = Review.objects.get(id=int(review_id))
+        review.rev_upvotes = review.rev_upvotes + 1
+        review.save()
+
+        return HttpResponse(review.rev_upvotes)
+
+
+class DislikeReview(View):
+
+    def get(self, request):
+        review_id = request.GET['review_id']
+
+        review = Review.objects.get(id=int(review_id))
+        review.rev_downvotes = review.rev_downvotes + 1
+        review.save()
+
+        return HttpResponse(review.rev_downvotes)
