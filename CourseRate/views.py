@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from CourseRate.models import University, Departments, Modules, Review, UserProfile, User
 from django.views.generic import View
+from django.utils import timezone
 
 
 def home(request):
@@ -20,7 +21,7 @@ def home(request):
 
 #A view that displays results from the homepage search bar
 def search_results(request):
-    search_string = request.COOKIES.get('search_string', '')
+    search_string = request.COOKIES.get('search_string', 'Test')
     context_dict = {}
 
     context_dict['universities'] = University.objects.filter(university_name__icontains=search_string)
@@ -220,6 +221,9 @@ def add_review(request, university_name_slug, department_name_slug, module_name_
             if university and department:
                 review = form.save(commit=False)
                 review.module = module
+                review.user = request.user
+                review.user_profile = UserProfile.objects.get(user=request.user)
+                review.rev_timestamp = timezone.now()
                 review.save()
                 return redirect(
                     reverse('CourseRate:show_module', kwargs={'university_name_slug': university_name_slug,
@@ -292,7 +296,7 @@ def show_module(request, university_name_slug, department_name_slug, module_name
                 context_dict['module'] = module
 
                 try:
-                    reviews = Review.objects.filter(module=module)
+                    reviews = Review.objects.filter(module=module).order_by('-rev_upvotes')
                     context_dict['reviews'] = reviews
                 except:
                     context_dict['reviews'] = None

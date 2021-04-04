@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.utils import timezone
 
 
 class UserProfile(models.Model):
@@ -69,6 +70,8 @@ class Modules(models.Model):
 
 class Review(models.Model):
     module = models.ForeignKey(Modules, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     RATING_CHOICES = (("0", "0"), ("1", "1"),
                       ("2", "2"), ("3", "3"),
@@ -77,11 +80,13 @@ class Review(models.Model):
                       ("8", "8"), ("9", "9"),
                       ("10", "10"))
 
+    rev_timestamp = models.DateField(default=timezone.now, blank=True, null=True)
     rev_title = models.CharField(max_length=50)
     rev_text = models.CharField(max_length=750)
     rev_rating = models.CharField(max_length=30, choices=RATING_CHOICES)
     rev_upvotes = models.IntegerField(default=0)
     rev_downvotes = models.IntegerField(default=0)
+
 
     def __str__(self):
         return self.module.module_name + '\n' + self.rev_text
