@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends  'CourseRater/base.html' %}
+{% load static %}
+
+{% block title_block %}
+                My Account
+{% endblock %}
+
+{% block style_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+  <div class="myAccount">
+  {% if user.is_authenticated %}
+      View your details.
+      {{ user.username }}
+      <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+  {% endif %}
+  </div>
+{% endblock %}

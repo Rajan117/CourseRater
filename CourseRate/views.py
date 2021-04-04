@@ -5,18 +5,41 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
-from CourseRate.models import University, Departments, Modules, Review
+from CourseRate.models import University, Departments, Modules, Review, UserProfile, User
 
 
 def home(request):
     context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
     response = render(request, 'CourseRater/home.html', context=context_dict)
+    request.session.set_test_cookie()
     return response
 
+#Helper function for homepage search
+#def search_cookie_handler(request, response):
+
+#A view that displays results from the homepage search bar
+def search_results(request):
+    context_dict = {'search_data': 'What user searched for...'}
+    response = render(request, 'CourseRater/results.html', context=context_dict)
+    return response
 
 def about(request):
     context_dict = {}
     response = render(request, 'CourseRater/about.html', context=context_dict)
+    if request.session.test_cookie_worked():
+        print("TEST COOKIE WORKED!")
+        request.session.delete_test_cookie()
+    return response
+
+@login_required
+def account(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except:
+        user_profile = None
+
+    context_dict = {'user_profile': user_profile}
+    response = render(request, 'CourseRater/account.html', context=context_dict)
     return response
 
 
@@ -80,7 +103,7 @@ def user_logout(request):
 
     return redirect(reverse('CourseRate:home'))
 
-
+@login_required
 def add_university(request):
     form = UniversityForm()
 
@@ -95,7 +118,7 @@ def add_university(request):
 
     return render(request, 'CourseRater/add_university.html', {'form': form})
 
-
+@login_required
 def add_department(request, university_name_slug):
     try:
         university = University.objects.get(slug=university_name_slug)
@@ -122,7 +145,7 @@ def add_department(request, university_name_slug):
     context_dict = {'form': form, 'university': university}
     return render(request, 'CourseRater/add_department.html', context_dict)
 
-
+@login_required
 def add_module(request, university_name_slug, department_name_slug):
     try:
         university = University.objects.get(slug=university_name_slug)
@@ -157,7 +180,7 @@ def add_module(request, university_name_slug, department_name_slug):
     context_dict = {'form': form, 'university': university, 'department': department}
     return render(request, 'CourseRater/add_module.html', context_dict)
 
-
+@login_required
 def add_review(request, university_name_slug, department_name_slug, module_name_slug):
     try:
         university = University.objects.get(slug=university_name_slug)
@@ -193,8 +216,8 @@ def add_review(request, university_name_slug, department_name_slug, module_name_
                 review.save()
                 return redirect(
                     reverse('CourseRate:show_module', kwargs={'university_name_slug': university_name_slug,
-                                                                  'department_name_slug': department_name_slug,
-                                                                  'module_name_slug': module_name_slug}))
+                                                              'department_name_slug': department_name_slug,
+                                                              'module_name_slug': module_name_slug}))
         else:
             print(form.errors)
 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends  'CourseRater/base.html' %}
+{% load static %}
+
+{% block title_block %}
+                Search Results
+{% endblock %}
+
+{% block style_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+  <div class="searchResults">
+    {{ search_data }}
+    <p>Return to the homepage <a href="{% url 'CourseRate:home' %}">here</a>.<p>
+  </div>
+{% endblock %}
