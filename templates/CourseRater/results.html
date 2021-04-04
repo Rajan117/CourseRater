@@ -12,7 +12,21 @@
 
 {% block body_block %}
   <div class="searchResults">
-    {{ search_data }}
+  <h1>Universities:</h1>
+  <p></p>
+    {% for university in universities %}
+        {{ university.university_name }}
+    {% endfor %}
+  <h1>Departments:</h1>
+  <p></p>
+    {% for department in departments %}
+        {{ department.department_name }}
+    {% endfor %}
+  <h1>Modules:</h1>
+  <p></p>
+    {% for module in modules %}
+        {{ module.module_name }}
+    {% endfor %}
     <p>Return to the homepage <a href="{% url 'CourseRate:home' %}">here</a>.<p>
   </div>
 {% endblock %}

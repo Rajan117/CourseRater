@@ -20,7 +20,13 @@ def home(request):
 
 #A view that displays results from the homepage search bar
 def search_results(request):
-    context_dict = {'search_data': 'What user searched for...'}
+    search_string = request.COOKIES.get('search_string', '')
+    context_dict = {}
+
+    context_dict['universities'] = University.objects.filter(department_name__icontains=search_string)
+    context_dict['departments'] = Departments.objects.filter(department_name__icontains=search_string)
+    context_dict['modules'] = Modules.objects.filter(department_name__icontains=search_string)
+
     response = render(request, 'CourseRater/results.html', context=context_dict)
     return response
 
