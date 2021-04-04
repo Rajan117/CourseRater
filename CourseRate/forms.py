@@ -44,8 +44,8 @@ class ModuleForm(forms.ModelForm):
 
 class ReviewForm(forms.ModelForm):
     rev_title = forms.CharField(max_length=50, help_text="Enter the title of the review.")
-    rev_text = forms.CharField(max_length=750, help_text="Write you review here, max 750 characters.")
-    rev_rating = forms.CharField(max_length=30, help_text="Leave your rating here.")
+    rev_text = forms.CharField(max_length=750, help_text="Write your review here, max 750 characters.", widget=forms.Textarea(attrs={'class': "largeTextbox"}))
+    rev_rating = forms.CharField(max_length=30, help_text="Rate the course on a scale from 1 to 10.", widget=forms.TextInput(attrs={'class': "rating"}))
     rev_upvotes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     rev_downvotes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 

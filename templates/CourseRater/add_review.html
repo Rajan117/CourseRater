@@ -8,6 +8,7 @@
 
 {% block style_block %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/add_review.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
@@ -17,12 +18,14 @@
       <form id="review_form" method="post" action="/CourseRate/university/{{ university.slug }}/{{ department.slug }}/{{ module.slug }}/add_review/">
           {% csrf_token %}
           {% for hidden in form.hidden_fields %}
-              {{ hidden }}
+             {{ hidden }}
           {% endfor %}
           {% for field in form.visible_fields %}
               {{ field.errors }}
               {{ field.help_text }}
+              </br>
               {{ field }}
+              </br></br>
           {% endfor %}
         <input type="submit" name="submit" value="Add Review" />
       </form>

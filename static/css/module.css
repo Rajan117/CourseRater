@@ -5,6 +5,10 @@
   margin-top: 80px;
 }
 
+.uniAndDep{
+  line-height: 0.3em;
+}
+
 p.reviewsList{
 
 }
@@ -22,14 +26,36 @@ a:hover:not(.active) {
   text-decoration: none;
 }
 
-#thumbsUp::before {
-  content: '';
-  background:url('https://img.icons8.com/material-sharp/24/000000/thumb-up.png');
-  background-size:cover;
-  position:absolute;
-  width:14px;
-  height:14px;
-  z-index:-1;
+hr {
+  border-top: 0.9px solid gray;
+}
+
+.review {
+  padding-bottom: 6px;
+  padding-top:6px;
+}
+
+.hidden {
+  color: transparent;
+}
+
+.revText {
+  padding-right: 100px;
+}
+
+.likeDislike {
+  width: 50px;
+  float: right;
+}
+
+.fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa:hover {
+  color: #727272
 }
 
 #reviews::before {
@@ -74,7 +100,7 @@ a:hover:not(.active) {
 
 #halfStar::before {
   content: '';
-  background:url('https://img.icons8.com/ios-filled/24/000000/star-half.png');
+  background:url('https://img.icons8.com/ios-filled/96/000000/star-half-empty.png');
   background-size:cover;
   position:absolute;
   width:14px;
