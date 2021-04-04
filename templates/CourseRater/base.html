@@ -23,7 +23,7 @@
         <li><a href="{% url 'CourseRate:about' %}">About us</a></li>
       {% if user.is_authenticated %}
         <li class="topRight"><a href="{% url 'CourseRate:logout' %}">Logout</a></li>
-        <li class="topRight"><a href="                             ">My Account</a></li>
+        <li class="topRight"><a href="{% url 'CourseRate:account' %}">My Account</a></li>
         <!-- <li class="topRight"><a>Hello {{ user.username }}!</a></li> -->
       {% else %}
         <li class="topRight"><a href="{% url 'CourseRate:login' %}">Login</a></li>
