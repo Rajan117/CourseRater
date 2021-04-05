@@ -69,7 +69,9 @@ def account(request):
     except:
         user_profile = None
 
-    context_dict = {'user_profile': user_profile}
+    reviews = Review.objects.filter(user=request.user)
+
+    context_dict = {'user_profile': user_profile, 'reviews': reviews}
     response = render(request, 'CourseRater/account.html', context=context_dict)
     return response
 
