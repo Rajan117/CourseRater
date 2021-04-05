@@ -1,0 +1,115 @@
+.searchResults{
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 80px;
+}
+
+.universityResults {
+
+
+}
+
+p.smallFont {
+  font-size: 13px;
+}
+
+p.smallerFont {
+  font-size: 12px;
+}
+
+p.largerFont {
+  font-size: 18px;
+}
+
+hr {
+  border: 0.9px solid gray;
+}
+
+a {
+  color: black;
+}
+
+a:hover:not(.active) {
+  color: #ffd35b;
+  text-decoration: none;
+}
+
+#uniAndDep{
+  margin-top: -12px;
+}
+
+#reviews::before {
+  content: '';
+  background:url('https://img.icons8.com/cotton/64/000000/seo-text.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+  z-index:-1;
+}
+
+#pen::before {
+  content: '';
+  background:url('https://img.icons8.com/pastel-glyph/64/000000/create-new--v2.png');
+  background-size:cover;
+  position:absolute;
+  width:14px;
+  height:14px;
+  z-index:-1;
+}
+
+.icon{
+  position:absolute;
+  margin-top:-20px;
+  float:left;
+  display:inline;
+
+}
+
+#u::after {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/80/000000/circled-u.png');
+  background-size:cover;
+  /* float:right; */
+  position:absolute;
+  width:25px;
+  height:25px;
+  z-index:-1;
+  filter: invert(93%) sepia(19%) saturate(1556%) hue-rotate(329deg) brightness(100%) contrast(102%);
+  margin-top:-5px;
+}
+
+#d::after {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/50/000000/circled-d.png');
+  background-size:cover;
+  /* float:right; */
+  position:absolute;
+  width:25px;
+  height:25px;
+  z-index:-1;
+  filter: invert(93%) sepia(19%) saturate(1556%) hue-rotate(329deg) brightness(100%) contrast(102%);
+  margin-top:-5px;
+}
+
+#c::after {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/50/000000/circled-c.png');
+  background-size:cover;
+  /* float:right; */
+  position:absolute;
+  width:25px;
+  height:25px;
+  z-index:-1;
+  filter: invert(93%) sepia(19%) saturate(1556%) hue-rotate(329deg) brightness(100%) contrast(102%);
+  margin-top:-5px;
+}
+
+.inline{
+  display:inline;
+}
+
+.right{
+  float:right;
+  margin:0;
+}

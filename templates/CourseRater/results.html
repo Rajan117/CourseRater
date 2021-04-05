@@ -8,27 +8,64 @@
 
 {% block style_block %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/results.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
   <div class="searchResults">
-  {{ search_string }}
-  <h1>Universities:</h1>
-  <p></p>
-    {% for university in universities %}
-        {{ university.university_name }}
-    {% endfor %}
-  <h1>Departments:</h1>
-  <p></p>
+  {% if search_query != "" %}
+  <p class="inline"> Showing results for: {{ search_query }}</p>
+  {% else %}
+  <p class="inline"> Showing all results:</p>
+  {% endif %}
+  <p class="inline right"><a href="{% url 'CourseRate:home' %}">Search again</a><p>
+
+  <hr>
+  <!-- <h1>Universities:</h1> -->
+
+  {% for university in universities %}
+    {% if university %}
+    <div class="universityResults">
+      <p id="u" class="largerFont inline"><a href="{% url 'CourseRate:show_university' university.slug %}">{{ university.university_name }}</a>&nbsp;</p>
+      <hr>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <!-- <h1>Departments:</h1> -->
+
     {% for department in departments %}
-        {{ department.department_name }}
+      {% if department %}
+        <p id="d" class="largerFont inline"><a href="{% url 'CourseRate:show_department' department.university.slug department.slug %}">{{ department.department_name }}</a>&nbsp;</p>
+        <p class="smallFont"><a href="{% url 'CourseRate:show_university' department.university.slug %}">{{ department.university.university_name }}</a></p>
+        <hr>
+
+      {% endif %}
     {% endfor %}
-  <h1>Modules:</h1>
-  <p></p>
+
+  <!--- <h1>Modules:</h1> -->
+
     {% for module in modules %}
-        {{ module.module_name }}
+      {% if module %}
+
+        <p class="largerFont" id="c"><a href="{% url 'CourseRate:show_module' module.department.university.slug module.department.slug module.slug %}">{{ module.module_name }}</a>&nbsp;</p>
+        <p id="uniAndDep" class="smallFont">
+          <a href="{% url 'CourseRate:show_university' module.department.university.slug %}">{{ module.department.university.university_name }}</a>
+          -
+          <a href="{% url 'CourseRate:show_department' module.department.university.slug module.department.slug %}">{{ module.department.department_name }}</a>
+        </p>
+        <p class="smallFont inline" id="reviews">&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'CourseRate:show_module' module.department.university.slug module.department.slug module.slug %}">Read reviews</a></p>
+
+        {% if user.is_authenticated %}
+        <p class="smallFont" id="pen">&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'CourseRate:add_review' module.department.university.slug module.department.slug module.slug%}">Add a review </a></p>
+        {% else %}
+        <p class="smallFont" id="pen">&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'CourseRate:login' %}">Login to add a review </a></p>
+        {% endif %}
+        <hr>
+      {% endif %}
     {% endfor %}
-    <p>Return to the homepage <a href="{% url 'CourseRate:home' %}">Return to the homepage</a>.<p>
+    <br>
+    <br>
 
   </div>
 {% endblock %}
