@@ -40,7 +40,7 @@ def search_results(request):
     return response
 
 def about(request):
-    context_dict = {query}
+    context_dict = {}
     response = render(request, 'CourseRater/about.html', context=context_dict)
     if request.session.test_cookie_worked():
         print("TEST COOKIE WORKED!")
