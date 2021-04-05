@@ -15,11 +15,13 @@ def home(request):
     search_query = ''
     if request.method == 'GET':
         search_query = request.GET.get('q', None)
-        if search_query != None:
+        if search_query is not None:
             context_dict = {}
-            response = render(request, 'CourseRater/results.html', context=context_dict)
+            print(search_query)
+            response = render(request, 'CourseRater/home.html', context=context_dict)
             search_cookie_handler(request, response, search_query)
-            return response
+            return redirect(
+                reverse('CourseRate:search_results'))
 
     context_dict = {}
     response = render(request, 'CourseRater/home.html', context=context_dict)
@@ -34,7 +36,8 @@ def search_cookie_handler(request, response, search_string):
 
 # A view that displays results from the homepage search bar
 def search_results(request):
-    search_string = request.COOKIES.get('search_string', 'Test')
+    search_string = request.COOKIES.get('search_string', '3rnkn')
+    print(search_string)
     context_dict = {'universities': University.objects.filter(university_name__icontains=search_string),
                     'departments': Departments.objects.filter(department_name__icontains=search_string),
                     'modules': Modules.objects.filter(module_name__icontains=search_string),
