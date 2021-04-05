@@ -4,6 +4,7 @@ from CourseRate import views
 app_name = 'CourseRate'
 
 urlpatterns = [
+    
     path('home/', views.home, name='home'),
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
@@ -22,3 +23,4 @@ urlpatterns = [
     path('like_review/', views.LikeReview.as_view(), name='like_review'),
     path('dislike_review/', views.DislikeReview.as_view(), name='dislike_review'),
 ]
+

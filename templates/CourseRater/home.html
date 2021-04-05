@@ -14,12 +14,10 @@
 {% block body_block %}
 
   <div class = "search">
-    <h1> Find your
-    <span class="txt-rotate" data-period="3500" data-rotate='[ "university", "department", "course"]'></span>
-    </h1>
+    <h1> Find your <span class="txt-rotate" data-period="3500" data-rotate='[ "university", "department", "course"]'></span></h1>
     <h3> Search your university to find course ratings and start rating courses. </h3>
-    <form>
-      <input type="text" id="lname" name="lname" placeholder="Search...">
+    <form type="get" action="." style="margin: 0">
+      <input id="q" type="text" name="q" placeholder="Search..." >
     </form>
   </div>
 

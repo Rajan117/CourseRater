@@ -11,16 +11,24 @@ from django.utils import timezone
 
 
 def home(request):
-    context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
+
+    # Get the search query from the searchbar
+    if request.method == 'GET':
+        search_query = request.GET.get('q', None)
+        print(search_query)
+    
+    context_dict = {}
     response = render(request, 'CourseRater/home.html', context=context_dict)
     request.session.set_test_cookie()
     return response
+    
 
 #Helper function for homepage search
 #def search_cookie_handler(request, response):
 
 #A view that displays results from the homepage search bar
 def search_results(request):
+    
     search_string = request.COOKIES.get('search_string', 'Test')
     context_dict = {}
 
@@ -32,7 +40,7 @@ def search_results(request):
     return response
 
 def about(request):
-    context_dict = {}
+    context_dict = {query}
     response = render(request, 'CourseRater/about.html', context=context_dict)
     if request.session.test_cookie_worked():
         print("TEST COOKIE WORKED!")
