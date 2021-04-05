@@ -31,12 +31,14 @@ hr {
 .review {
   padding-bottom: 6px;
   padding-top:6px;
+  position: relative;
 }
 
 #profilePicture{
   position: absolute;
   margin-left: 20px;
   margin-right:20px;
+  margin-top: 18px;
 }
 
 .hidden {

@@ -15,7 +15,12 @@
   {% if user.is_authenticated %}
       View your details.
       {{ user.username }}
-      <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+      {% if user_profile.picture %}
+      <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+      {% else %}
+      <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}profile_images/default.jpg" alt="No picture" />
+      {% endif %}
+
   {% endif %}
   </div>
 {% endblock %}

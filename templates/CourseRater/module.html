@@ -49,10 +49,10 @@
 
 
         <div class = "reviewInfo">
-        <p class="inline"> {{ review.user }} </p>
-        <p> {{ review.rev_title }} </p>
+        <p> {{ review.user }} </p>
+        <p class="inline"> {{ review.rev_title }} </p>
 
-        <p class = "inline">Course rating: </p>
+        
         {% if review.rev_rating == '1' %}
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
@@ -129,7 +129,7 @@
         <br>
         </div>
         <p class="smallFont revText">{{ review.rev_text }}<p>
-        
+
       </div>
     {% endfor %}
   </div>
