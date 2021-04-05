@@ -11,6 +11,7 @@ from django.utils import timezone
 
 
 def home(request):
+    """
     # Get the search query from the searchbar
     search_query = ''
     if request.method == 'GET':
@@ -22,7 +23,7 @@ def home(request):
             search_cookie_handler(request, response, search_query)
             return redirect(
                 reverse('CourseRate:search_results'))
-
+    """
     context_dict = {}
     response = render(request, 'CourseRater/home.html', context=context_dict)
 
@@ -30,18 +31,26 @@ def home(request):
 
 
 # Helper function to handle the search cookie
+"""
 def search_cookie_handler(request, response, search_string):
     response.set_cookie('search_string', search_string)
-
+"""
 
 # A view that displays results from the homepage search bar
 def search_results(request):
-    search_string = request.COOKIES.get('search_string', '3rnkn')
-    print(search_string)
-    context_dict = {'universities': University.objects.filter(university_name__icontains=search_string),
-                    'departments': Departments.objects.filter(department_name__icontains=search_string),
-                    'modules': Modules.objects.filter(module_name__icontains=search_string),
-                    'search_string': search_string}
+
+    # Get the search query from the searchbar
+    search_query = ''
+    if request.method == 'GET':
+        search_query = request.GET.get('q', None)
+        if search_query != None:
+            context_dict = {}
+            print(search_query)
+
+    context_dict = {'universities': University.objects.filter(university_name__icontains=search_query),
+                    'departments': Departments.objects.filter(department_name__icontains=search_query),
+                    'modules': Modules.objects.filter(module_name__icontains=search_query),
+                    'search_query': search_query}
 
     response = render(request, 'CourseRater/results.html', context=context_dict)
     return response

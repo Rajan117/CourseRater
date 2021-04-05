@@ -9,9 +9,7 @@
   line-height: 0.3em;
 }
 
-p.reviewsList{
 
-}
 
 p.smallFont {
   font-size: 14px;
@@ -35,12 +33,29 @@ hr {
   padding-top:6px;
 }
 
+#profilePicture{
+  position: absolute;
+  margin-left: 20px;
+  margin-right:20px;
+}
+
 .hidden {
   color: transparent;
 }
 
 .revText {
   padding-right: 100px;
+  margin-left: 80px;
+}
+
+.profilePicture {
+  border: 1px solid black;
+
+}
+
+.reviewInfo {
+  margin-left: 80px;
+
 }
 
 .likeDislike {

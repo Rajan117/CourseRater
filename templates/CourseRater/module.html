@@ -39,10 +39,18 @@
     <div class="reviewsList">
     {% for review in reviews %}
         <div class="review">
-        <p> {{ review.rev_title }} </p>
 
-        <p> {{ review.user }} </p>
-        <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+
+          {% if review.user_profile.picture %}
+          <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}{{ review.user_profile.picture }}" alt="No picture" />
+          {% else %}
+          <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}profile_images/default.jpg" alt="No picture" />
+          {% endif %}
+
+
+        <div class = "reviewInfo">
+        <p class="inline"> {{ review.user }} </p>
+        <p> {{ review.rev_title }} </p>
 
         <p class = "inline">Course rating: </p>
         {% if review.rev_rating == '1' %}
@@ -107,7 +115,7 @@
         <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
         {% endif %}
         <p class = "inline hidden reviewRating">{{ review.rev_rating }}</p>
-
+        </div>
         <div class="likeDislike">
         {% if user.is_authenticated %}
         <p class="inline smallFont" ><i data-reviewid="{{ review.id }}" class="fa fa-thumbs-up likeButton"> {{ review.rev_upvotes }}</i></p>
@@ -120,8 +128,8 @@
         {% endif %}
         <br>
         </div>
-
         <p class="smallFont revText">{{ review.rev_text }}<p>
+        
       </div>
     {% endfor %}
   </div>
