@@ -4,9 +4,37 @@
   margin-top: 80px;
 }
 
-.universityResults {
+.filtersHeader {
+  margin-bottom: 20px;
+  -webkit-columns: 3 200px;
+  -moz-columns: 3 200px;
+  columns: 3 200px;
+  hyphens: auto;
+}
 
+.leftFilter{
+  border: 0.5px solid black;
+  text-align: center;
+  padding:10px;
+}
 
+.middleFilter{
+  border: 0.5px solid black;
+  text-align: center;
+  padding:10px;
+}
+
+.rightFilter{
+  border: 0.5px solid black;
+  text-align: center;
+  padding:10px;
+}
+
+input[type=text] {
+  font-size: 15px;
+  width: 75%;
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 
 p.smallFont {
@@ -22,7 +50,7 @@ p.largerFont {
 }
 
 hr {
-  border: 0.9px solid gray;
+  border-bottom: 0.5px solid gray;
 }
 
 a {
@@ -63,14 +91,12 @@ a:hover:not(.active) {
   margin-top:-20px;
   float:left;
   display:inline;
-
 }
 
 #u::after {
   content: '';
   background:url('https://img.icons8.com/ios-filled/80/000000/circled-u.png');
   background-size:cover;
-  /* float:right; */
   position:absolute;
   width:25px;
   height:25px;
@@ -83,7 +109,6 @@ a:hover:not(.active) {
   content: '';
   background:url('https://img.icons8.com/ios-filled/50/000000/circled-d.png');
   background-size:cover;
-  /* float:right; */
   position:absolute;
   width:25px;
   height:25px;
@@ -96,7 +121,6 @@ a:hover:not(.active) {
   content: '';
   background:url('https://img.icons8.com/ios-filled/50/000000/circled-c.png');
   background-size:cover;
-  /* float:right; */
   position:absolute;
   width:25px;
   height:25px;

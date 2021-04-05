@@ -12,11 +12,11 @@ import datetime
 
 def populate():
 
-    unis = ['The University of Glasgow',
-            'The University of Edinburgh',
-            'The University of Oxford']
+    unis = ['University of Glasgow',
+            'University of Edinburgh',
+            'University of Oxford']
 
-    departments_modules = { 'Computing Science':['Web Dev', 'Algorithms'],
+    departments_modules = { 'Computing Science':['Web Application Development', 'Algorithms and Data Structures'],
                    'Economics':['Macroeconomics','Economics 101'],
                   'Media Studies':['Advertisting'] }
 

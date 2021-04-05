@@ -9,10 +9,34 @@
 {% block style_block %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'css/results.css' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'js/results.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
+
   <div class="searchResults">
+
+    <div class="filtersHeader">
+      <div class="leftFilter">
+      <label for="uniSearch">Search by university</label>
+      <input class="form-control" id="uniSearch" type="text" placeholder="">
+      </div>
+
+      <div class="middleFilter">
+      <label for="depSearch">Search by department</label>
+      <input class="form-control" id="depSearch" type="text" placeholder="">
+      </div>
+
+      <div class="rightFilter">
+      <label for="courseSearch" >Search by course</label>
+      <input class="form-control" id="courseSearch" type="text" placeholder="">
+      </div>
+
+    </div>
+
+
   {% if search_query != "" %}
   <p class="inline"> Showing results for: {{ search_query }}</p>
   {% else %}
@@ -22,32 +46,34 @@
 
   <hr>
   <!-- <h1>Universities:</h1> -->
-
+  <div id="uniList">
   {% for university in universities %}
     {% if university %}
-    <div class="universityResults">
+      <div class="uni">
       <p id="u" class="largerFont inline"><a href="{% url 'CourseRate:show_university' university.slug %}">{{ university.university_name }}</a>&nbsp;</p>
       <hr>
       </div>
     {% endif %}
   {% endfor %}
+  </div>
 
   <!-- <h1>Departments:</h1> -->
-
+    <div id="depList">
     {% for department in departments %}
       {% if department %}
+        <div class="dep">
         <p id="d" class="largerFont inline"><a href="{% url 'CourseRate:show_department' department.university.slug department.slug %}">{{ department.department_name }}</a>&nbsp;</p>
         <p class="smallFont"><a href="{% url 'CourseRate:show_university' department.university.slug %}">{{ department.university.university_name }}</a></p>
         <hr>
-
+        </div>
       {% endif %}
     {% endfor %}
-
+    </div>
   <!--- <h1>Modules:</h1> -->
-
+    <div id="courseList">
     {% for module in modules %}
       {% if module %}
-
+        <div class="course">
         <p class="largerFont" id="c"><a href="{% url 'CourseRate:show_module' module.department.university.slug module.department.slug module.slug %}">{{ module.module_name }}</a>&nbsp;</p>
         <p id="uniAndDep" class="smallFont">
           <a href="{% url 'CourseRate:show_university' module.department.university.slug %}">{{ module.department.university.university_name }}</a>
@@ -62,8 +88,10 @@
         <p class="smallFont" id="pen">&nbsp;&nbsp;&nbsp;&nbsp; <a href="{% url 'CourseRate:login' %}">Login to add a review </a></p>
         {% endif %}
         <hr>
+        </div>
       {% endif %}
     {% endfor %}
+    </div>
     <br>
     <br>
 
