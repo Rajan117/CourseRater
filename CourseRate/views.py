@@ -35,11 +35,10 @@ def search_cookie_handler(request, response, search_string):
 # A view that displays results from the homepage search bar
 def search_results(request):
     search_string = request.COOKIES.get('search_string', 'Test')
-    context_dict = {}
-
-    context_dict['universities'] = University.objects.filter(university_name__icontains=search_string)
-    context_dict['departments'] = Departments.objects.filter(department_name__icontains=search_string)
-    context_dict['modules'] = Modules.objects.filter(module_name__icontains=search_string)
+    context_dict = {'universities': University.objects.filter(university_name__icontains=search_string),
+                    'departments': Departments.objects.filter(department_name__icontains=search_string),
+                    'modules': Modules.objects.filter(module_name__icontains=search_string),
+                    'search_string': search_string}
 
     response = render(request, 'CourseRater/results.html', context=context_dict)
     return response
