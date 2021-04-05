@@ -8,18 +8,101 @@
 
 {% block style_block %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}"/>
 {% endblock %}
 
 {% block body_block %}
   <div class="myAccount">
   {% if user.is_authenticated %}
-      View your details.
-      {{ user.username }}
-      {% if user_profile.picture %}
-      <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+
+  <div class="userInfo">
+    {% if user_profile.picture %}
+      <img id="profilePicture" width="160" height="160" src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+    {% else %}
+      <img id="profilePicture" width="160" height="160" src="{{ MEDIA_URL }}profile_images/default.jpg" alt="No picture" />
+    {% endif %}
+    <p class="smallerFont"> Username: {{ user.username }}</p>
+    <p class="smallerFont"> Email: {{ user.email }} </p>
+  </div>
+
+    <div class="reviewHistory">
+      <h1>Hi {{ user.username }}!</h1>
+      <br>
+      <p>Rating and review history </p>
+      <hr>
+
+      {% if reviews %}
+      {% for review in reviews %}
+      <p> {{ review.module.module_name }} </p>
+      <p class="smallerFont" id="uniAndDep"> {{ review.module.department }}  </p>
+      <p class="smallFont inline"> Your rating:</p>
+      {% if review.rev_rating == '1' %}
+      <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '2'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '3'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '4'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '5'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '6'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '7'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '8'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
+      {% elif  review.rev_rating == '9'%}
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
       {% else %}
-      <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}profile_images/default.jpg" alt="No picture" />
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
+      <p class = "inline" id="fullStar"> &nbsp;&nbsp;</p>
       {% endif %}
+
+      <p id="reviewText" class="smallFont"> {{ review.rev_text }} </p>
+      <br>
+      {% endfor %}
+      {% endif %}
+    </div>
 
   {% endif %}
   </div>

@@ -1,0 +1,73 @@
+
+.myAccount {
+  margin-top: 80px;
+  position:relative;
+  z-index:-1;
+}
+
+.userInfo  {
+  position:fixed;
+  margin-left: 10px;
+  text-align: center;
+  width: 220px;
+}
+
+.reviewHistory {
+  margin-right: 20px;
+  margin-left: 250px;
+  margin-top: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#reviewText{
+  margin-top: -0.25px;
+  padding-right: 15px;
+}
+
+.inline{
+  display:inline;
+}
+
+hr {
+  border-top: 0.9px solid gray;
+}
+
+p.smallFont {
+  font-size: 13px;
+}
+
+p.smallerFont {
+  font-size: 12px;
+}
+
+#uniAndDep{
+  margin-top: -12px;
+}
+
+#fullStar::before {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/50/000000/star--v1.png');
+  background-size:cover;
+  position:absolute;
+  width:13px;
+  height:13px;
+}
+
+#emptyStar::before {
+  content: '';
+  background:url('https://img.icons8.com/ios/50/000000/star--v1.png');
+  background-size:cover;
+  position:absolute;
+  width:13px;
+  height:13px;
+}
+
+#halfStar::before {
+  content: '';
+  background:url('https://img.icons8.com/ios-filled/96/000000/star-half-empty.png');
+  background-size:cover;
+  position:absolute;
+  width:13px;
+  height:13px;
+}
