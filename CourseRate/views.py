@@ -15,10 +15,11 @@ def home(request):
     search_query = ''
     if request.method == 'GET':
         search_query = request.GET.get('q', None)
-        context_dict = {}
-        response = render(request, 'CourseRater/results.html', context=context_dict)
-        search_cookie_handler(request, response, search_query)
-        return response
+        if search_query != None:
+            context_dict = {}
+            response = render(request, 'CourseRater/results.html', context=context_dict)
+            search_cookie_handler(request, response, search_query)
+            return response
 
     context_dict = {}
     response = render(request, 'CourseRater/home.html', context=context_dict)

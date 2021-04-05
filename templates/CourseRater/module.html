@@ -40,6 +40,10 @@
     {% for review in reviews %}
         <div class="review">
         <p> {{ review.rev_title }} </p>
+
+        <p> {{ review.user }} </p>
+        <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="No profile picture for this account" />
+
         <p class = "inline">Course rating: </p>
         {% if review.rev_rating == '1' %}
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
