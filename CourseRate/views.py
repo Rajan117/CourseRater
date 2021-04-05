@@ -11,24 +11,28 @@ from django.utils import timezone
 
 
 def home(request):
-
     # Get the search query from the searchbar
+    search_query = ''
     if request.method == 'GET':
         search_query = request.GET.get('q', None)
-        print(search_query)
-    
+        context_dict = {}
+        response = render(request, 'CourseRater/results.html', context=context_dict)
+        search_cookie_handler(request, response, search_query)
+        return response
+
     context_dict = {}
     response = render(request, 'CourseRater/home.html', context=context_dict)
-    request.session.set_test_cookie()
+
     return response
-    
 
-#Helper function for homepage search
-#def search_cookie_handler(request, response):
 
-#A view that displays results from the homepage search bar
+# Helper function to handle the search cookie
+def search_cookie_handler(request, response, search_string):
+    response.set_cookie('search_string', search_string)
+
+
+# A view that displays results from the homepage search bar
 def search_results(request):
-    
     search_string = request.COOKIES.get('search_string', 'Test')
     context_dict = {}
 
@@ -39,13 +43,12 @@ def search_results(request):
     response = render(request, 'CourseRater/results.html', context=context_dict)
     return response
 
+
 def about(request):
     context_dict = {}
     response = render(request, 'CourseRater/about.html', context=context_dict)
-    if request.session.test_cookie_worked():
-        print("TEST COOKIE WORKED!")
-        request.session.delete_test_cookie()
     return response
+
 
 @login_required
 def account(request):
@@ -119,6 +122,7 @@ def user_logout(request):
 
     return redirect(reverse('CourseRate:home'))
 
+
 @login_required
 def add_university(request):
     form = UniversityForm()
@@ -133,6 +137,7 @@ def add_university(request):
             print(form.errors)
 
     return render(request, 'CourseRater/add_university.html', {'form': form})
+
 
 @login_required
 def add_department(request, university_name_slug):
@@ -160,6 +165,7 @@ def add_department(request, university_name_slug):
 
     context_dict = {'form': form, 'university': university}
     return render(request, 'CourseRater/add_department.html', context_dict)
+
 
 @login_required
 def add_module(request, university_name_slug, department_name_slug):
@@ -195,6 +201,7 @@ def add_module(request, university_name_slug, department_name_slug):
 
     context_dict = {'form': form, 'university': university, 'department': department}
     return render(request, 'CourseRater/add_module.html', context_dict)
+
 
 @login_required
 def add_review(request, university_name_slug, department_name_slug, module_name_slug):
