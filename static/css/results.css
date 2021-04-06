@@ -5,34 +5,41 @@
 }
 
 .filtersHeader {
-  margin-bottom: 20px;
-  -webkit-columns: 3 200px;
-  -moz-columns: 3 200px;
-  columns: 3 200px;
-  hyphens: auto;
+  height: 85px;
 }
 
 .leftFilter{
+  margin-left: 5%;
   border: 1px solid black;
+  width:25%;
+  float:left;
+  height: 100%;
   text-align: center;
-  padding:15px;
 }
 
 .middleFilter{
   border: 1px solid black;
+  width:25%;
+  float:left;
   text-align: center;
-  padding:15px;
+  margin-left: 7.5%;
+  height: 100%
 }
 
 .rightFilter{
+  margin-right: 5%;
   border: 1px solid black;
+  width:25%;
+  float:right;
   text-align: center;
-  padding:15px;
+  height: 100%
 }
 
 input[type=text] {
+  margin-top: 2.5%;
+  height: 30%;
   font-size: 15px;
-  width: 75%;
+  width: 80%;
   box-sizing: border-box;
   border: 1px solid black;
 }

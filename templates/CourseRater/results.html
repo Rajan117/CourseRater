@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'css/results.css' %}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{% static 'js/results.js' %}"></script>
 {% endblock %}
 
@@ -20,22 +19,25 @@
 
     <div class="filtersHeader">
       <div class="leftFilter">
+      <br>
       <label for="uniSearch">Search by university</label>
-      <input class="form-control" id="uniSearch" type="text" placeholder="">
+      <input id="uniSearch" type="text" placeholder="">
       </div>
 
       <div class="middleFilter">
+      <br>
       <label for="depSearch">Search by department</label>
-      <input class="form-control" id="depSearch" type="text" placeholder="">
+      <input id="depSearch" type="text" placeholder="">
       </div>
 
       <div class="rightFilter">
+      <br>
       <label for="courseSearch" >Search by course</label>
-      <input class="form-control" id="courseSearch" type="text" placeholder="">
+      <input id="courseSearch" type="text" placeholder="">
       </div>
-
     </div>
-
+  <br>
+  <br>
 
   {% if search_query != "" %}
   <p class="inline"> Showing results for: {{ search_query }}</p>
