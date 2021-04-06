@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 import random
 import datetime
 
-
+#Populates a sample db for testing/reviewing purposes
 def populate():
 
     unis = ['University of Glasgow',
@@ -38,7 +38,7 @@ def populate():
                     r = add_review(x,m)
 
 
-
+#Helper functions for populating 
 
 def add_uni(name):
     u = University.objects.get_or_create(university_name=name)[0]
@@ -84,12 +84,11 @@ def add_review(x, m):
     return review
 
 
-#def add_review(module, user, user_profile):
-
-
+#Messages printed out and calling of main function
 if __name__ == '__main__':
     print('Starting CourseRater population script...')
     populate()
+    print('The population script has ended.')
 
 
 
