@@ -45,7 +45,7 @@
   <p class="inline right"><a href="{% url 'CourseRate:home' %}">Search again</a><p>
 
   <hr>
-  <!-- <h1>Universities:</h1> -->
+  <!-- Universities -->
   <div id="uniList">
   {% for university in universities %}
     {% if university %}
@@ -57,20 +57,22 @@
   {% endfor %}
   </div>
 
-  <!-- <h1>Departments:</h1> -->
-    <div id="depList">
+  <!-- Departments -->
+  <div id="depList">
     {% for department in departments %}
       {% if department %}
         <div class="dep">
         <p id="d" class="largerFont inline"><a href="{% url 'CourseRate:show_department' department.university.slug department.slug %}">{{ department.department_name }}</a>&nbsp;</p>
         <p class="smallFont"><a href="{% url 'CourseRate:show_university' department.university.slug %}">{{ department.university.university_name }}</a></p>
         <hr>
-        </div>
+      </div>
       {% endif %}
     {% endfor %}
-    </div>
-  <!--- <h1>Modules:</h1> -->
-    <div id="courseList">
+  </div>
+
+
+  <!--- Courses -->
+  <div id="courseList">
     {% for module in modules %}
       {% if module %}
         <div class="course">
@@ -91,9 +93,11 @@
         </div>
       {% endif %}
     {% endfor %}
-    </div>
-    <br>
-    <br>
-
+  </div>
+    {% if user.is_authenticated %}
+      <p class="right smallFont">Can't find a university? <a href="{% url 'CourseRate:add_university' %}">Add a university page</a></p>
+    {% else %}
+      <p class="right smallFont">Can't find a university? <a href="{% url 'CourseRate:login' %}">Login to add a university page</a></p>
+    {% endif %}
   </div>
 {% endblock %}

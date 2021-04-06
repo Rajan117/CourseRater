@@ -38,21 +38,17 @@
 {% if reviews %}
     <div class="reviewsList">
     {% for review in reviews %}
-        <div class="review">
-
-
-          {% if review.user_profile.picture %}
+      <div class="review">
+        {% if review.user_profile.picture %}
           <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}{{ review.user_profile.picture }}" alt="No picture" />
-          {% else %}
+        {% else %}
           <img id="profilePicture" width="40" height="40" src="{{ MEDIA_URL }}profile_images/default.jpg" alt="No picture" />
-          {% endif %}
-
+        {% endif %}
 
         <div class = "reviewInfo">
         <p> {{ review.user }} </p>
         <p class="inline"> {{ review.rev_title }} </p>
 
-        
         {% if review.rev_rating == '1' %}
         <p class = "inline" id="halfStar"> &nbsp;&nbsp;</p>
         <p class = "inline" id="emptyStar"> &nbsp;&nbsp;</p>
@@ -129,6 +125,7 @@
         <br>
         </div>
         <p class="smallFont revText">{{ review.rev_text }}<p>
+        <p class="smallerFont revText">{{ review.rev_timestamp }}</p>
 
       </div>
     {% endfor %}
