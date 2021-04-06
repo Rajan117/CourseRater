@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify
 from django.utils import timezone
 
 
+# Stores a user's website and profile picture
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,6 +16,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+# Represents a university a student may attend
 class University(models.Model):
     university_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True)
@@ -30,6 +32,7 @@ class University(models.Model):
         verbose_name_plural = 'Universities'
 
 
+# Represents a department a university may have
 class Departments(models.Model):
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     department_name = models.CharField(max_length=200)
@@ -48,12 +51,12 @@ class Departments(models.Model):
         verbose_name_plural = 'Departments'
 
 
+# Represents a module that a student may take
 class Modules(models.Model):
     department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     module_name = models.CharField(max_length=200)
     slug = models.SlugField(unique=False)
     unique_slug = models.SlugField(unique=True)
-
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.module_name)
@@ -68,6 +71,7 @@ class Modules(models.Model):
         verbose_name_plural = 'Modules'
 
 
+# Represents a review written by a user
 class Review(models.Model):
     module = models.ForeignKey(Modules, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -86,7 +90,6 @@ class Review(models.Model):
     rev_rating = models.CharField(max_length=30, choices=RATING_CHOICES)
     rev_upvotes = models.IntegerField(default=0)
     rev_downvotes = models.IntegerField(default=0)
-
 
     def __str__(self):
         return self.module.module_name + '\n' + self.rev_text

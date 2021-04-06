@@ -25,7 +25,7 @@
         <p> Can't find the course you're looking for? <a href="{% url 'CourseRate:add_module' university.slug department.slug %}">Add a course to this department</a><p>
         <ul class="moduleList" id="moduleList">
         {% for module in modules %}
-        <li class="modules"><a href="{% url 'CourseRate:show_module' university.slug department.slug module.slug%}">{{ module.module_name }}</a></li>
+        <li class="modules"><a href="{% url 'CourseRate:show_module' university.slug department.slug module.slug %}">{{ module.module_name }}</a></li>
         {% endfor %}
         </ul>
 

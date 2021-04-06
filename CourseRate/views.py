@@ -10,6 +10,7 @@ from django.views.generic import View
 from django.utils import timezone
 
 
+# A view for the homepage
 def home(request):
     """
     # Get the search query from the searchbar
@@ -30,15 +31,8 @@ def home(request):
     return response
 
 
-# Helper function to handle the search cookie
-"""
-def search_cookie_handler(request, response, search_string):
-    response.set_cookie('search_string', search_string)
-"""
-
 # A view that displays results from the homepage search bar
 def search_results(request):
-
     # Get the search query from the searchbar
     search_query = ''
     if request.method == 'GET':
@@ -56,12 +50,14 @@ def search_results(request):
     return response
 
 
+# A simple about page
 def about(request):
     context_dict = {}
     response = render(request, 'CourseRater/about.html', context=context_dict)
     return response
 
 
+# A view to display information about the crrently logged in user
 @login_required
 def account(request):
     try:
@@ -76,6 +72,7 @@ def account(request):
     return response
 
 
+# A view that allows users to register with the site
 def register(request):
     registered = False
 
@@ -109,6 +106,7 @@ def register(request):
                   context={'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
+# A view that allows users to sign into their account
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -130,6 +128,7 @@ def user_login(request):
         return render(request, 'CourseRater/login.html')
 
 
+# A view that logs out the user signed in
 @login_required
 def user_logout(request):
     logout(request)
@@ -137,6 +136,7 @@ def user_logout(request):
     return redirect(reverse('CourseRate:home'))
 
 
+# A view that allows a user to create a university and stores it in the database
 @login_required
 def add_university(request):
     form = UniversityForm()
@@ -153,6 +153,7 @@ def add_university(request):
     return render(request, 'CourseRater/add_university.html', {'form': form})
 
 
+# Allow users to add a department to a university
 @login_required
 def add_department(request, university_name_slug):
     try:
@@ -181,6 +182,7 @@ def add_department(request, university_name_slug):
     return render(request, 'CourseRater/add_department.html', context_dict)
 
 
+# A view allowing users to add a module to a department
 @login_required
 def add_module(request, university_name_slug, department_name_slug):
     try:
@@ -217,6 +219,7 @@ def add_module(request, university_name_slug, department_name_slug):
     return render(request, 'CourseRater/add_module.html', context_dict)
 
 
+# This allows users to write a review for a module
 @login_required
 def add_review(request, university_name_slug, department_name_slug, module_name_slug):
     try:
@@ -265,6 +268,7 @@ def add_review(request, university_name_slug, department_name_slug, module_name_
     return render(request, 'CourseRater/add_review.html', context_dict)
 
 
+# Displays a university and its departments to the user
 def show_university(request, university_name_slug):
     context_dict = {}
 
@@ -284,6 +288,7 @@ def show_university(request, university_name_slug):
     return render(request, 'CourseRater/university.html', context=context_dict)
 
 
+# Displays a department and its modules to a user
 def show_department(request, university_name_slug, department_name_slug):
     context_dict = {}
 
@@ -309,6 +314,7 @@ def show_department(request, university_name_slug, department_name_slug):
     return render(request, 'CourseRater/department.html', context=context_dict)
 
 
+# Displays a module and its reviews
 def show_module(request, university_name_slug, department_name_slug, module_name_slug):
     context_dict = {}
 
@@ -345,6 +351,8 @@ def show_module(request, university_name_slug, department_name_slug, module_name
 
     return render(request, 'CourseRater/module.html', context=context_dict)
 
+
+# Below are 2 helper classes for review likes/dislikes
 
 class LikeReview(View):
 
