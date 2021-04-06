@@ -6,14 +6,10 @@ $(document).ready(function(){
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
       $(".searchResults .course").hide();
       $(".searchResults .dep").hide();
+
     });
   });
 
-  $("#uniSearch").on("blur", function() {
-    $(".searchResults .course").show();
-    $(".searchResults .dep").show();
-    $(".searchResults .uni").show();
-  });
 
   $("#depSearch").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -24,11 +20,6 @@ $(document).ready(function(){
     });
   });
 
-  $("#depSearch").on("blur", function() {
-    $(".searchResults .course").show();
-    $(".searchResults .dep").show();
-    $(".searchResults .uni").show();
-  });
 
   $("#courseSearch").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -39,10 +30,5 @@ $(document).ready(function(){
     });
   });
 
-  $("#courseSearch").on("blur", function() {
-    $(".searchResults .course").show();
-    $(".searchResults .dep").show();
-    $(".searchResults .uni").show();
-  });
 
 });
