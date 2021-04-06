@@ -105,6 +105,7 @@ hr {
   width:14px;
   height:14px;
   z-index:-1;
+  filter: invert(93%) sepia(19%) saturate(1556%) hue-rotate(329deg) brightness(100%) contrast(102%);
 }
 
 #emptyStar::before {
@@ -115,6 +116,7 @@ hr {
   width:14px;
   height:14px;
   z-index:-1;
+  filter: invert(93%) sepia(19%) saturate(1556%) hue-rotate(329deg) brightness(100%) contrast(102%);
 }
 
 #halfStar::before {
@@ -125,6 +127,7 @@ hr {
   width:14px;
   height:14px;
   z-index:-1;
+  filter: invert(93%) sepia(19%) saturate(1556%) hue-rotate(329deg) brightness(100%) contrast(102%);
 }
 
 .inline{

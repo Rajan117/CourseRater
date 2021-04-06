@@ -13,19 +13,19 @@
 }
 
 .leftFilter{
-  border: 0.5px solid black;
+  border: 1px solid black;
   text-align: center;
   padding:15px;
 }
 
 .middleFilter{
-  border: 0.5px solid black;
+  border: 1px solid black;
   text-align: center;
   padding:15px;
 }
 
 .rightFilter{
-  border: 0.5px solid black;
+  border: 1px solid black;
   text-align: center;
   padding:15px;
 }
