@@ -33,8 +33,9 @@ def populate():
             d = add_department(u, dep)
             for modu in departments_modules[dep]:
                 m = add_module(d, modu)
-                x = add_user_profile()
-                r = add_review(x,m)
+                for i in range(1, random.randint(2,5)):
+                    x = add_user_profile()
+                    r = add_review(x,m)
 
 
 
@@ -59,7 +60,7 @@ def add_module(department, name):
 
 def add_user_profile():
 
-    user = User.objects.create_user('User'+str(random.randint(10000,200000)), email=None, password="Test123")
+    user = User.objects.create_user('User'+str(random.randint(10000,9000000)), email=None, password="Test123")
     up = UserProfile.objects.get_or_create(user=user)[0]
     up.save()
 
